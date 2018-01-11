@@ -69,8 +69,7 @@ class TinyWebglCanvas extends TinyCanvasRoze {
   }
 
   void clear() {
-    stencilV = 1;
-    flZ = -0.5;
+    super.clear();
     double r = 0.0;
     double g = 0.0;
     double b = 0.0;
@@ -89,20 +88,13 @@ class TinyWebglCanvas extends TinyCanvasRoze {
     GL.blendFuncSeparate(RenderingContext.SRC_ALPHA, RenderingContext.ONE_MINUS_SRC_ALPHA, RenderingContext.SRC_ALPHA, RenderingContext.ONE_MINUS_CONSTANT_ALPHA);
 
     GL.clear(RenderingContext.COLOR_BUFFER_BIT | RenderingContext.STENCIL_BUFFER_BIT | RenderingContext.DEPTH_BUFFER_BIT);
-    flVert.clear();
-    flInde.clear();
-    flTex.clear();
-    flImg = null;
   }
 
   void flush() {
     if (flVert.length != 0) {
       drawVertex(flVert, flInde, new TinyColor.argb(0xaa, 0xff, 0xaa, 0xaa));
-      flVert.clear();
-      flInde.clear();
-      flTex.clear();
-      flImg = null;
     }
+    super.flush();
   }
 
   void drawVertex(List<double> svertex, List<int> index, TinyColor color) {
@@ -201,15 +193,4 @@ class TinyWebglCanvas extends TinyCanvasRoze {
     stencilV++;
   }
 
-  void updateMatrix() {}
-
-  Matrix4 calcMat() {
-    cacheMatrix.setIdentity();
-    //cacheMatrix =
-    cacheMatrix.translate(-1.0, 1.0, 0.0);
-    //cacheMatrix =
-    cacheMatrix.scale(2.0 / glContext.widht, -2.0 / glContext.height, 1.0);
-    cacheMatrix = cacheMatrix * getMatrix();
-    return cacheMatrix;
-  }
 }
