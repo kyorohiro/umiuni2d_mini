@@ -1,18 +1,14 @@
+library tinygame_webgl;
 
 import 'dart:html' as html;
 import 'dart:async';
 import 'package:umiuni2d/core.dart';
 
-import 'dart:async';
-import 'dart:math'as math;
 import 'package:vector_math/vector_math_64.dart';
-import 'package:umiuni2d/core.dart';
 import 'dart:html';
 import 'dart:web_gl';
-import 'dart:web_audio';
 import 'dart:typed_data';
 import 'dart:convert' as conv;
-//import 'package:umiuni2d_core/util/image.dart';
 
 part 'core/stage.dart';
 part 'core/util.dart';

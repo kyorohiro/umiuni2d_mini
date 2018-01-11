@@ -1,3 +1,4 @@
+/*
 import 'package:umiuni2d/core.dart';
 import 'package:umiuni2d_webgl/core.dart';
 import 'package:example/primitive_test.dart';
@@ -11,3 +12,4 @@ void main() {
   PrimitiveTest test = new PrimitiveTest(builder);
   root.addChild(test);
 }
+*/

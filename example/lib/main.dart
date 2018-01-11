@@ -1,4 +1,3 @@
-/*
 import 'package:flutter/material.dart';
 
 void main() => runApp(new MyApp());
@@ -62,4 +61,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-*/
