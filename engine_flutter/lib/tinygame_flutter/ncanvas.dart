@@ -303,11 +303,21 @@ class TinyFlutterNCanvas extends TinyCanvas {
       sky.ImageShader imgShader = new sky.ImageShader((_curImage as TinyFlutterImage).rawImage.image, tmx, tmy, matrix4);
       p.shader = imgShader;
     }
-    sky.Vertices vertices = new sky.Vertices(
-        sky.VertexMode.triangles,  _vertices,
-        textureCoordinates: _textureCoordinates,
-        indices: _indicies,
-        colors: _colors);
+    sky.Vertices vertices = null;
+    if(_textureCoordinates.length > 0) {
+      vertices = new sky.Vertices(
+          sky.VertexMode.triangles, _vertices,
+          textureCoordinates: _textureCoordinates,
+          indices: _indicies,
+          colors: _colors);
+    } else {
+      vertices = new sky.Vertices(
+          sky.VertexMode.triangles, _vertices,
+          //  textureCoordinates: _textureCoordinates,
+          indices: _indicies,
+          colors: _colors);
+    }
+    canvas.drawVertices(vertices, sky.BlendMode.color, p);
 //    canvas.drawVertices(sky.VertexMode.triangles, _vertices, _textureCoordinates, _colors, sky.TransferMode.color, _indicies, p);
     _vertices.clear();
     _textureCoordinates.clear();

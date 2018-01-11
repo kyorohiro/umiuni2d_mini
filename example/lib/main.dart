@@ -1,63 +1,29 @@
-import 'package:flutter/material.dart';
+//
+//
+// Flutter entry point
+//
+//
+import 'package:flutter/widgets.dart';
+import 'package:flutter/rendering.dart';
+import 'package:umiuni2d/core.dart';
+import 'package:umiuni2d_flutter/core.dart';
+import 'primitive_test.dart';
 
-void main() => runApp(new MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Flutter Demo',
-      theme: new ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: new MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+void main() {
+  runApp(new GameWidget());
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
+class GameWidget extends SingleChildRenderObjectWidget {
+  GameWidget() {}
 
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.title),
-      ),
-      body: new Center(
-        child: new Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Text(
-              'You have pushed the button this many times:',
-            ),
-            new Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: new FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: new Icon(Icons.add),
-      ),
-    );
+  RenderObject createRenderObject(BuildContext context) {
+    TinyGameBuilderForFlutter builder = new TinyGameBuilderForFlutter(assetsRoot:"web/");
+    builder.useTestCanvas = true;
+    TinyGameRoot root = new TinyGameRoot(400.0, 300.0);
+    TinyStage stage = builder.createStage(root: root);
+    stage.start();
+    stage.root.addChild(new PrimitiveTest(builder));
+    return (stage as TinyFlutterStage);
   }
 }
