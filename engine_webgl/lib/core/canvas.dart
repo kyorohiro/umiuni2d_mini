@@ -4,9 +4,9 @@ class TinyWebglCanvas extends TinyCanvasRoze {
 
   RenderingContext GL;
   TinyWebglContext glContext;
-  int maxVertexTextureImageUnits = 3;
   double get contextWidht => glContext.widht;
   double get contextHeight => glContext.height;
+  Program programShape;
 
   //-2.0 / glContext.height
 
@@ -17,7 +17,6 @@ class TinyWebglCanvas extends TinyCanvasRoze {
     init();
     clear();
   }
-  Program programShape;
 
   void init() {
     maxVertexTextureImageUnits = GL.getParameter(RenderingContext.MAX_VERTEX_TEXTURE_IMAGE_UNITS);
@@ -200,90 +199,6 @@ class TinyWebglCanvas extends TinyCanvasRoze {
     // todo
     GL.stencilFunc(RenderingContext.LEQUAL, stencilV, 0xff);
     stencilV++;
-  }
-
-  //bool a = false;
-  void drawImageRect(TinyStage stage, TinyImage image, TinyRect src, TinyRect dst, TinyPaint paint,
-    {TinyCanvasTransform transform: TinyCanvasTransform.NONE, List<Object> cache: null}) {
-
-    if (flImg != null && flImg != image) {
-      //TinyImage tmp = flImg;
-      flush();
-      // todo
-      //flImg.dispose();
-    }
-    flImg = image;
-
-    double xs = src.x / flImg.w;
-    double ys = src.y / flImg.h;
-    double xe = (src.x + src.w) / flImg.w;
-    double ye = (src.y + src.h) / flImg.h;
-    //print("############### ${xs} ${ys} ${xe} ${ye} ##############");
-    switch (transform) {
-      case TinyCanvasTransform.NONE:
-        flTex.addAll([xs, ys, xs, ye, xe, ys, xe, ye]);
-        break;
-      case TinyCanvasTransform.ROT90:
-        flTex.addAll([xs, ye, xe, ye, xs, ys, xe, ys]);
-        break;
-      case TinyCanvasTransform.ROT180:
-        flTex.addAll([xe, ye, xe, ys, xs, ye, xs, ys]);
-        break;
-      case TinyCanvasTransform.ROT270:
-        flTex.addAll([xe, ys, xs, ys, xe, ye, xs, ye]);
-        break;
-      case TinyCanvasTransform.MIRROR:
-        flTex.addAll([xe, ys, xe, ye, xs, ys, xs, ye]);
-        break;
-      case TinyCanvasTransform.MIRROR_ROT90:
-        flTex.addAll([xs, ys, xe, ys, xs, ye, xe, ye]);
-        break;
-      case TinyCanvasTransform.MIRROR_ROT180:
-        flTex.addAll([xs, ye, xs, ys, xe, ye, xe, ys]);
-        break;
-      case TinyCanvasTransform.MIRROR_ROT270:
-        flTex.addAll([xe, ye, xs, ye, xe, ys, xs, ys]);
-        break;
-      default:
-        flTex.addAll([xs, ys, xs, ye, xe, ys, xe, ye]);
-    }
-
-    //
-    //
-    //
-    Matrix4 m = calcMat();
-    double sx = dst.x;
-    double sy = dst.y;
-    double ex = dst.x + dst.w;
-    double ey = dst.y + dst.h;
-
-    Vector3 ss1 = m * new Vector3(sx, sy, 0.0);
-    Vector3 ss2 = m * new Vector3(sx, ey, 0.0);
-    Vector3 ss3 = m * new Vector3(ex, sy, 0.0);
-    Vector3 ss4 = m * new Vector3(ex, ey, 0.0);
-
-    int b = flVert.length ~/ 8;
-    double colorR = paint.color.r / 0xff;
-    double colorG = paint.color.g / 0xff;
-    double colorB = paint.color.b / 0xff;
-    double colorA = paint.color.a / 0xff;
-    flVert.addAll([
-      ss1.x, ss1.y, flZ, // 7
-      colorR, colorG, colorB, colorA, // color
-      1.0,
-      ss2.x, ss2.y, flZ, // 1
-      colorR, colorG, colorB, colorA, // color
-      1.0,
-      ss3.x, ss3.y, flZ, // 9
-      colorR, colorG, colorB, colorA, // color
-      1.0,
-      ss4.x, ss4.y, flZ, //3
-      colorR, colorG, colorB, colorA, // color
-      1.0
-    ]);
-    flZ += 0.0001;
-    //b= 0;
-    flInde.addAll([b + 0, b + 1, b + 2, b + 1, b + 3, b + 2]);
   }
 
   void updateMatrix() {}
