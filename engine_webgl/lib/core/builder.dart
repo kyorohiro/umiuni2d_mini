@@ -15,7 +15,7 @@ class TinyGameBuilderForWebgl extends TinyGameBuilder {
     if(root == null) {
       root = new TinyDisplayObject();
     }
-    return new TinyWebglStage(this, root, width:width, height:height, selectors:selectors, tickInterval:tickInterval, paintInterval:paintInterval);
+    return new TinyWebglStage(this, root, width:width.toDouble(), height:height.toDouble(), selectors:selectors, tickInterval:tickInterval, paintInterval:paintInterval);
   }
 
   Future<TinyImage> loadImageBase(String path) async {

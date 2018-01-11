@@ -7,7 +7,7 @@ class TinyWebglContext {
   double widht;
   double height;
   String selectors;
-  TinyWebglContext({width: 600.0, height: 400.0, this.selectors: null}) {
+  TinyWebglContext({double width: 600.0, double height: 400.0, this.selectors: null}) {
     this.widht = width;
     this.height = height;
     if (selectors == null) {
@@ -23,7 +23,7 @@ class TinyWebglContext {
         this.widht = _canvasElement.offsetWidth.toDouble();
       }
       if (height != null) {
-        _canvasElement.height = height;
+        _canvasElement.height = height.toInt();
       } else {
         this.height = _canvasElement.offsetHeight.toDouble();
       }

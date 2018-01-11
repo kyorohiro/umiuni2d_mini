@@ -1,12 +1,12 @@
 
 import 'dart:html' as html;
 import 'dart:async';
-import 'package:umiuni2d_core/core.dart';
+import 'package:umiuni2d/core.dart';
 
 import 'dart:async';
 import 'dart:math'as math;
 import 'package:vector_math/vector_math_64.dart';
-import 'package:umiuni2d_core/core.dart';
+import 'package:umiuni2d/core.dart';
 import 'dart:html';
 import 'dart:web_gl';
 import 'dart:web_audio';

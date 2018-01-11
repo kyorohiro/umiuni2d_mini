@@ -8,7 +8,7 @@ environment:
   sdk: '>=1.20.1 <2.0.0'
 
 dependencies:
-  umiuni2d_core:
+  umiuni2d:
     path: ../engine_core
 
 dev_dependencies:

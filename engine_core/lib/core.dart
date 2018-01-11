@@ -24,7 +24,7 @@ abstract class TinyGameBuilder {
   Map<String, String> cachString = {};
   Map<String, Uint8List> cachBytes = {};
 
-  TinyStage createStage(TinyDisplayObject root);
+  TinyStage createStage({TinyDisplayObject root});
   Future<List<String>> getFiles();
   Future<String> getLocale();
   Future<double> getDisplayDensity();

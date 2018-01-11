@@ -2,7 +2,7 @@ library tinyutil.webgl;
 
 import 'dart:html' as html;
 import 'dart:async';
-import 'package:umiuni2d_core/core.dart';
+import 'package:umiuni2d/core.dart';
 
 class ImageElementResizer {
   static Future<html.ImageElement> resize(html.ImageElement imageTmp, {int nextHeight: 300}) async {
