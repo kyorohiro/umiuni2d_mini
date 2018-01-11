@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:vector_math/vector_math_64.dart';
 import 'util.dart';
 import 'dart:typed_data';
+import 'dart:math' as math;
 
 part 'core/canvas.dart';
+part 'core/canvas_roze.dart';
 part 'core/color.dart';
 part 'core/displayobject.dart';
 part 'core/gameroot.dart';
