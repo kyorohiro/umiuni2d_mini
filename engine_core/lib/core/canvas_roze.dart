@@ -2,8 +2,8 @@ part of core;
 
 abstract class TinyCanvasRoze extends TinyCanvas {
 
-  int get contextWidht;
-  int get contextHeight;
+  double get contextWidht;
+  double get contextHeight;
   void drawVertex(List<double> svertex, List<int> index, TinyColor color);
   void clearClip(TinyStage stage);
   void clipRect(TinyStage stage, TinyRect rect, {Matrix4 m:null});

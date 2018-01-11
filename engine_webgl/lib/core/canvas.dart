@@ -1,6 +1,6 @@
 part of tinygame_webgl;
 
-class TinyWebglCanvas extends TinyCanvas {
+class TinyWebglCanvas extends TinyCanvasRoze {
   int _numOfCircleElm;
   int get numOfCircleElm => _numOfCircleElm;
   List<double> _circleCache = [];
@@ -15,6 +15,11 @@ class TinyWebglCanvas extends TinyCanvas {
   RenderingContext GL;
   TinyWebglContext glContext;
   int maxVertexTextureImageUnits = 3;
+  double get contextWidht => glContext.widht;
+  double get contextHeight => glContext.height;
+
+  //-2.0 / glContext.height
+
   TinyWebglCanvas(TinyWebglContext c, {int numOfCircleElm:16}) {
     GL = c.GL;
     glContext = c;
@@ -78,7 +83,7 @@ class TinyWebglCanvas extends TinyCanvas {
   List<double> flVert = [];
   List<int> flInde = [];
   List<double> flTex = [];
-  TinyWebglImage flImg = null;
+  //TinyWebglImage flImg = null;
   double flZ = 0.0;
   void clear() {
     stencilV = 1;
@@ -314,7 +319,7 @@ class TinyWebglCanvas extends TinyCanvas {
     GL.vertexAttribPointer(texLocation, 2, RenderingContext.FLOAT, false, 0, 0);
     if (flImg != null) {
       {
-        Texture tex = flImg.getTex(GL);
+        Texture tex = (flImg as TinyWebglImage).getTex(GL);
         GL.bindTexture(RenderingContext.TEXTURE_2D, tex);
 
         GL.texParameteri(RenderingContext.TEXTURE_2D, RenderingContext.TEXTURE_WRAP_S, RenderingContext.CLAMP_TO_EDGE);
