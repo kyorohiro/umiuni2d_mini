@@ -11,7 +11,7 @@ class TinyGameBuilderForFlutter extends TinyGameBuilder {
 
   bool tickInPerFrame = true;
   bool useTestCanvas = true; //false;
-  bool useDrawVertexForPrimtive = false;
+  bool useDrawVertexForPrimtive = true;
 
   @override
   TinyStage createStage({TinyDisplayObject root}) {

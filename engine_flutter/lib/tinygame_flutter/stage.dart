@@ -213,14 +213,16 @@ bool hitTestSelf(sky.Offset position) => true;
     super.paint(context, offset);
     if (this.canvas == null) {
       if (this.useTestCanvas == true) {
-        this.canvas = new TinyFlutterCanvas(context.canvas);
+        //this.canvas = new TinyFlutterCanvas(context.canvas);
+        this.canvas = new TinyFlutterNCanvas(context.canvas, useDrawVertexForPrimtive: useDrawVertexForPrimtive);
       } else {
         this.canvas = new TinyFlutterNCanvas(context.canvas, useDrawVertexForPrimtive: useDrawVertexForPrimtive);
       }
     }
 
     if (this.useTestCanvas == true) {
-      (this.canvas as TinyFlutterCanvas).canvas = context.canvas;
+//      (this.canvas as TinyFlutterCanvas).canvas = context.canvas;
+      (this.canvas as TinyFlutterNCanvas).canvas = context.canvas;
     } else {
       (this.canvas as TinyFlutterNCanvas).canvas = context.canvas;
     }

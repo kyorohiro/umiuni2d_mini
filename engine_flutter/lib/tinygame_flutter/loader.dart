@@ -4,9 +4,8 @@ part of tinygame_flutter;
 
 class TinyFlutterImage implements TinyImage {
   ImageInfo rawImage;
-  TinyFlutterImage(this.rawImage) {
-    ;
-  }
+  TinyFlutterImage(this.rawImage);
+
   @override
   int get w => rawImage.image.width;
 
@@ -14,7 +13,7 @@ class TinyFlutterImage implements TinyImage {
   int get h => rawImage.image.height;
 
   @override
-  void dispose() {;}
+  void dispose() {}
 }
 
 class ResourceLoader {
@@ -27,9 +26,16 @@ class ResourceLoader {
   }
 
   static Future<ImageInfo> loadImage(String url) async {
-    AssetBundle bundle = getAssetBundle();
-    ImageResource resource = bundle.loadImage(url);
-    return resource.first;
+    ImageStream stream = new AssetImage(url, bundle: getAssetBundle()).resolve(ImageConfiguration.empty);
+    Completer<ImageInfo> completer = new Completer<ImageInfo>();
+    void listener(ImageInfo frame, bool synchronousCall) {
+      completer.complete(frame);
+    }
+    stream.addListener(listener);
+    return completer.future;
+//    AssetBundle bundle = getAssetBundle();
+//    ImageResource resource = bundle.loadImage(url);
+//    return resource.first;
   }
 
   static Future<String> loadString(String url) async {
@@ -42,13 +48,13 @@ class ResourceLoader {
   // TODO
   static Future<data.Uint8List> loadBytes(String url) async {
     AssetBundle bundle = getAssetBundle();
-    MojoDataPipeConsumer b = await bundle.load(url);
-    data.ByteData d1 = await DataPipeDrainer.drainHandle(b);
+    ByteData b = await bundle.load(url);
+    data.ByteData d1 = b;//await DataPipeDrainer.drainHandle(b);
     //print("-a-${url} -- ${b}");
     return d1.buffer.asUint8List();//b;
   }
 
-  static Future<MojoDataPipeConsumer> loadMojoData(String url) async {
+  static Future<ByteData> loadMojoData(String url) async {
     AssetBundle bundle = getAssetBundle();
     return await bundle.load(url);
   }

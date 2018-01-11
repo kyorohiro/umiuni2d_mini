@@ -2,7 +2,7 @@ part of tinygame_flutter;
 
 class TinyFlutterNCanvas extends TinyCanvas {
 
-  TinyFlutterNCanvas(this.canvas, {this.useDrawVertexForPrimtive: false}) {
+  TinyFlutterNCanvas(this.canvas, {this.useDrawVertexForPrimtive: true}) {
     numOfCircleElm = 12;
   }
 
@@ -34,22 +34,11 @@ class TinyFlutterNCanvas extends TinyCanvas {
     if (_curImage != null) {
       flush();
     }
-    if (useDrawVertexForPrimtive) {
-      if (paint.style == TinyPaintStyle.fill) {
-        drawFillOval(stage, rect, paint);
-      } else {
-        drawStrokeOval(stage, rect, paint);
-      }
+    if (paint.style == TinyPaintStyle.fill) {
+      drawFillOval(stage, rect, paint);
     } else {
-      drawOvalWithRawFlutter(stage, rect, paint, cache: cache);
+      drawStrokeOval(stage, rect, paint);
     }
-  }
-
-  void drawOvalWithRawFlutter(TinyStage stage, TinyRect rect, TinyPaint paint, {List<Object> cache: null}) {
-    Matrix4 m = getMatrix();
-    canvas.setMatrix(m.storage);
-    canvas.drawOval(new Rect.fromLTWH(rect.x, rect.y, rect.w, rect.h), toPaintWithRawFlutter(paint));
-    canvas.setMatrix(new Matrix4.identity().storage);
   }
 
   void drawStrokeOval(TinyStage stage, TinyRect rect, TinyPaint paint) {
@@ -199,22 +188,11 @@ class TinyFlutterNCanvas extends TinyCanvas {
     if (_curImage != null) {
       flush();
     }
-    if (useDrawVertexForPrimtive) {
-      if (paint.style == TinyPaintStyle.fill) {
-        drawFillRect(stage, rect, paint);
-      } else {
-        drawStrokeRect(stage, rect, paint);
-      }
+    if (paint.style == TinyPaintStyle.fill) {
+      drawFillRect(stage, rect, paint);
     } else {
-      drawRectWithRawFlutter(stage, rect, paint, cache: cache);
+      drawStrokeRect(stage, rect, paint);
     }
-  }
-
-  void drawRectWithRawFlutter(TinyStage stage, TinyRect rect, TinyPaint paint, {List<Object> cache: null}) {
-    Matrix4 m = getMatrix();
-    canvas.setMatrix(m.storage);
-    canvas.drawRect(new Rect.fromLTWH(rect.x, rect.y, rect.w, rect.h), toPaintWithRawFlutter(paint));
-    canvas.setMatrix(new Matrix4.identity().storage);
   }
 
   Paint toPaintWithRawFlutter(TinyPaint p) {
