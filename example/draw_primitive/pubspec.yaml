@@ -9,11 +9,8 @@ dependencies:
     path: ../../engine_core
   umiuni2d_flutter:
     path: ../../engine_flutter
-
-dev_dependencies:
-  browser: '>=0.10.0 <0.11.0'
-  dart_to_js_script_rewriter: '^1.0.1'
-
+  umiuni2d_webgl:
+    path: ../../engine_webgl
 flutter:
   uses-material-design: true
   assets:
