@@ -1,6 +1,6 @@
 part of tinygame_webgl;
 
-class TinyWebglCanvas extends TinyCanvasRoze {
+class TinyWebglCanvas extends core.TinyCanvasRoze {
 
   RenderingContext GL;
   TinyWebglContext glContext;
@@ -92,12 +92,12 @@ class TinyWebglCanvas extends TinyCanvasRoze {
 
   void flush() {
     if (flVert.length != 0) {
-      drawVertex(flVert, flInde, new TinyColor.argb(0xaa, 0xff, 0xaa, 0xaa));
+      drawVertex(flVert, flInde, new core.TinyColor.argb(0xaa, 0xff, 0xaa, 0xaa));
     }
     super.flush();
   }
 
-  void drawVertex(List<double> svertex, List<int> index, TinyColor color) {
+  void drawVertex(List<double> svertex, List<int> index, core.TinyColor color) {
     //
     //
     GL.useProgram(programShape);
@@ -162,13 +162,13 @@ class TinyWebglCanvas extends TinyCanvasRoze {
   }
 
 
-  void clearClip(TinyStage stage) {
+  void clearClip(core.TinyStage stage) {
     flush();
     stencilV = 1;
     GL.clearStencil(0);
   }
 
-  void clipRect(TinyStage stage, TinyRect rect, {Matrix4 m:null}) {
+  void clipRect(core.TinyStage stage, core.TinyRect rect, {Matrix4 m:null}) {
     flush();
     GL.colorMask(false, false, false, false);
     GL.depthMask(false);
@@ -177,8 +177,8 @@ class TinyWebglCanvas extends TinyCanvasRoze {
 
     //
 
-    TinyPaint p = new TinyPaint();
-    p.color = new TinyColor.argb(0xff, 0xff, 0xff, 0xff);
+    core.TinyPaint p = new core.TinyPaint();
+    p.color = new core.TinyColor.argb(0xff, 0xff, 0xff, 0xff);
     drawFillRect(null, rect, p, m:m);
     flush();
     //

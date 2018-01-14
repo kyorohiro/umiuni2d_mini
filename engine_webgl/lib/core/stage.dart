@@ -1,6 +1,6 @@
 part of tinygame_webgl;
 
-class TinyWebglStage extends TinyStage {
+class TinyWebglStage extends core.TinyStage {
   TinyWebglContext glContext;
   double get x => 0.0;
   double get y => 0.0;
@@ -18,15 +18,15 @@ class TinyWebglStage extends TinyStage {
   int animeId = 0;
   int paintInterval;
   int tickInterval;
-  TinyGameBuilder _builder;
-  TinyGameBuilder get builder => _builder;
+  core.TinyGameBuilder _builder;
+  core.TinyGameBuilder get builder => _builder;
 
   int countKickMv = 0;
   num prevTime = 0;
 
-  TinyStageBase stageBase;
-  TinyWebglStage(this._builder, TinyDisplayObject root, {double width: 600.0, double height: 400.0, String selectors: null, this.tickInterval: 15, this.paintInterval: 40}) {
-    stageBase = new TinyStageBase(this);
+  core.TinyStageBase stageBase;
+  TinyWebglStage(this._builder, core.TinyDisplayObject root, {double width: 600.0, double height: 400.0, String selectors: null, this.tickInterval: 15, this.paintInterval: 40}) {
+    stageBase = new core.TinyStageBase(this);
     glContext = new TinyWebglContext(width: width, height: height, selectors: selectors);
     this.root = root;
     mouseTest();
@@ -73,7 +73,7 @@ class TinyWebglStage extends TinyStage {
 
   bool isTMode = false;
   bool _animeIsOn = false;
-  TinyCanvas c = null;
+  core.TinyCanvas c = null;
   Future _anime() async {
           print("--a1-");
     _animeIsOn = true;
@@ -155,12 +155,12 @@ class TinyWebglStage extends TinyStage {
           countKickMv++;
           //if(countKickMv < 3) {
 //          print("MOVE ${touchs}");
-          kickTouch(this, t.identifier + 1, TinyStagePointerType.MOVE, x.toDouble(), y.toDouble());
+          kickTouch(this, t.identifier + 1, core.TinyStagePointerType.MOVE, x.toDouble(), y.toDouble());
           //}
         } else {
 //          print("DOWN ${touchs}");
           touchs[t.identifier] = t;
-          kickTouch(this, t.identifier + 1, TinyStagePointerType.DOWN, x.toDouble(), y.toDouble());
+          kickTouch(this, t.identifier + 1, core.TinyStagePointerType.DOWN, x.toDouble(), y.toDouble());
         }
       }
     }
@@ -172,7 +172,7 @@ class TinyWebglStage extends TinyStage {
           int x = t.page.x - glContext._canvasElement.offsetLeft;
           int y = t.page.y - glContext._canvasElement.offsetTop;
           touchs.remove(t.identifier);
-          kickTouch(this, t.identifier + 1, TinyStagePointerType.UP, x.toDouble(), y.toDouble());
+          kickTouch(this, t.identifier + 1, core.TinyStagePointerType.UP, x.toDouble(), y.toDouble());
         }
       }
     }
@@ -192,7 +192,7 @@ class TinyWebglStage extends TinyStage {
         //print("down offset=${e.offsetX}:${e.offsetY}  client=${e.clientX}:${e.clientY} screen=${e.screenX}:${e.screenY}");
         //print("down");
         isTap = true;
-        kickTouch(this, 0, TinyStagePointerType.DOWN, e.offset.x.toDouble(), e.offset.y.toDouble());
+        kickTouch(this, 0, core.TinyStagePointerType.DOWN, e.offset.x.toDouble(), e.offset.y.toDouble());
       }
     });
     glContext.canvasElement.onMouseUp.listen((MouseEvent e) {
@@ -200,7 +200,7 @@ class TinyWebglStage extends TinyStage {
       if (tappedEventTime + 500 < lastUpdateTime) {
         //print("up offset=${e.offsetX}:${e.offsetY}  client=${e.clientX}:${e.clientY} screen=${e.screenX}:${e.screenY}");
         if (isTap == true) {
-          kickTouch(this, 0, TinyStagePointerType.UP, e.offset.x.toDouble(), e.offset.y.toDouble());
+          kickTouch(this, 0, core.TinyStagePointerType.UP, e.offset.x.toDouble(), e.offset.y.toDouble());
           isTap = false;
         }
       }
@@ -220,7 +220,7 @@ class TinyWebglStage extends TinyStage {
         //  print("leave offset=${e.offsetX}:${e.offsetY}  client=${e.clientX}:${e.clientY} screen=${e.screenX}:${e.screenY}");
         //print("move");
         if (isTap == true) {
-          kickTouch(this, 0, TinyStagePointerType.CANCEL, e.offset.x.toDouble(), e.offset.y.toDouble());
+          kickTouch(this, 0, core.TinyStagePointerType.CANCEL, e.offset.x.toDouble(), e.offset.y.toDouble());
           isTap = false;
         }
       }
@@ -230,7 +230,7 @@ class TinyWebglStage extends TinyStage {
       if (tappedEventTime + 500 < lastUpdateTime) {
         //print("move offset=${e.offsetX}:${e.offsetY}  client=${e.clientX}:${e.clientY} screen=${e.screenX}:${e.screenY}");
         if (isTap == true) {
-          kickTouch(this, 0, TinyStagePointerType.MOVE, e.offset.x.toDouble(), e.offset.y.toDouble());
+          kickTouch(this, 0, core.TinyStagePointerType.MOVE, e.offset.x.toDouble(), e.offset.y.toDouble());
         } //else {
         //  kickTouch(this, 0, TinyStagePointerType.DOWN, e.offset.x.toDouble(), e.offset.y.toDouble());
         //  isTap == true;
@@ -243,7 +243,7 @@ class TinyWebglStage extends TinyStage {
       if (tappedEventTime + 500 < lastUpdateTime) {
         // print("out offset=${e.offsetX}:${e.offsetY}  client=${e.clientX}:${e.clientY} screen=${e.screenX}:${e.screenY}");
         if (isTap == true) {
-          kickTouch(this, 0, TinyStagePointerType.CANCEL, e.offset.x.toDouble(), e.offset.y.toDouble());
+          kickTouch(this, 0, core.TinyStagePointerType.CANCEL, e.offset.x.toDouble(), e.offset.y.toDouble());
           isTap = false;
         }
       }
@@ -267,10 +267,10 @@ class TinyWebglStage extends TinyStage {
   //
   //
   @override
-  TinyDisplayObject get root => stageBase.root;
+  core.TinyDisplayObject get root => stageBase.root;
 
   @override
-  void set root(TinyDisplayObject v) {
+  void set root(core.TinyDisplayObject v) {
     stageBase.root = v;
   }
 
@@ -280,12 +280,12 @@ class TinyWebglStage extends TinyStage {
   }
 
   @override
-  void kickPaint(TinyStage stage, TinyCanvas canvas) {
+  void kickPaint(core.TinyStage stage, core.TinyCanvas canvas) {
     stageBase.kickPaint(stage, canvas);
   }
 
   @override
-  void kickTouch(TinyStage stage, int id, TinyStagePointerType type, double x, double y) {
+  void kickTouch(core.TinyStage stage, int id, core.TinyStagePointerType type, double x, double y) {
     stageBase.kickTouch(stage, id, type, x, y);
   }
 

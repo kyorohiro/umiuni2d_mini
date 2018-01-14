@@ -1,6 +1,6 @@
 part of tinygame_webgl;
 
-class TinyWebglImage extends TinyImage {
+class TinyWebglImage extends core.TinyImage {
   int get w => elm.width;
   int get h => elm.height;
   var elm;//ImageElement elm;

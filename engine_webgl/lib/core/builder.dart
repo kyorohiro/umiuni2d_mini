@@ -1,6 +1,6 @@
 part of tinygame_webgl;
 
-class TinyGameBuilderForWebgl extends TinyGameBuilder {
+class TinyGameBuilderForWebgl extends core.TinyGameBuilder {
   String assetsRoot = "";
   String get assetsPath => (assetsRoot.endsWith("/")?assetsRoot:"${assetsRoot}/");
   int width = 600;
@@ -11,14 +11,14 @@ class TinyGameBuilderForWebgl extends TinyGameBuilder {
   double fontPower = 2.0;
   TinyGameBuilderForWebgl({this.assetsRoot:""}) {}
 
-  TinyStage createStage({TinyDisplayObject root}) {
+  core.TinyStage createStage({core.TinyDisplayObject root}) {
     if(root == null) {
-      root = new TinyDisplayObject();
+      root = new core.TinyDisplayObject();
     }
     return new TinyWebglStage(this, root, width:width.toDouble(), height:height.toDouble(), selectors:selectors, tickInterval:tickInterval, paintInterval:paintInterval);
   }
 
-  Future<TinyImage> loadImage(String path) async {
+  Future<core.TinyImage> loadImage(String path) async {
     ImageElement elm = await TinyWebglLoader.loadImage("${assetsPath}${path}");
     return new TinyWebglImage(elm);
   }
