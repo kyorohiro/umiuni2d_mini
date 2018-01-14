@@ -3,7 +3,7 @@ part of core;
 
 //typedef LittleUIPaintFunc (TinyStage stage, TinyCanvas canvas);
 
-class TinyDisplayObjectEx extends TinyDisplayObject {
+class DisplayObjectEx extends DisplayObject {
   List<TExpansionBase> extensions = [];
   addExtension(TExpansionBase ex) {
     extensions.add(ex);
@@ -18,7 +18,7 @@ class TinyDisplayObjectEx extends TinyDisplayObject {
   }
 
   @override
-  void onChangeStageStatus(TinyStage stage, TinyDisplayObject parent) {
+  void onChangeStageStatus(TinyStage stage, DisplayObject parent) {
     for(TExpansionBase b in extensions) {
       b.onChangeStageStatus(stage, parent);
     }
@@ -39,14 +39,14 @@ class TinyDisplayObjectEx extends TinyDisplayObject {
   }
 
   @override
-  void onPaint(TinyStage stage, TinyCanvas canvas){
+  void onPaint(TinyStage stage, Canvas canvas){
     for(TExpansionBase b in extensions) {
       b.onPaint(stage, canvas);
     }
   }
 
   @override
-  bool onTouch(TinyStage stage, int id, TinyStagePointerType type, double globalX, globalY){
+  bool onTouch(TinyStage stage, int id, StagePointerType type, double globalX, globalY){
     bool ret = false;
     for(TExpansionBase b in extensions) {
       ret = ret ||  b.onTouch(stage, id, type, globalX, globalY);
@@ -55,14 +55,14 @@ class TinyDisplayObjectEx extends TinyDisplayObject {
   }
 
   @override
-  void onTouchStart(TinyStage stage, int id, TinyStagePointerType type, double x, double y){
+  void onTouchStart(TinyStage stage, int id, StagePointerType type, double x, double y){
     for(TExpansionBase b in extensions) {
       b.onTouchStart(stage, id, type, x, y);
     }
   }
 
   @override
-  void onTouchEnd(TinyStage stage, int id, TinyStagePointerType type, double x, double y){
+  void onTouchEnd(TinyStage stage, int id, StagePointerType type, double x, double y){
     for(TExpansionBase b in extensions) {
       b.onTouchEnd(stage, id, type, x, y);
     }
@@ -76,7 +76,7 @@ class TinyDisplayObjectEx extends TinyDisplayObject {
   }
 
   @override
-  void onAttach(TinyStage stage, TinyDisplayObject parent) {
+  void onAttach(TinyStage stage, DisplayObject parent) {
     for(TExpansionBase b in extensions) {
       b.onAttach(stage, parent);
     }

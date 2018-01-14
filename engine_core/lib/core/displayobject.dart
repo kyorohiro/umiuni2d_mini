@@ -1,8 +1,8 @@
 part of core;
 
-class TinyDisplayObject {
+class DisplayObject {
   String objectName = "none";
-  List<TinyDisplayObject> child = [];
+  List<DisplayObject> child = [];
   Matrix4 mat = new Matrix4.identity();
   double get x => this.mat.storage[12];
   double get y => this.mat.storage[13];
@@ -12,18 +12,18 @@ class TinyDisplayObject {
   double get sz => (new Vector3(mat.storage[2], mat.storage[6], mat.storage[10])).length;
 
 
-  TinyDisplayObject({this.child: null}) {
+  DisplayObject({this.child: null}) {
     if (child == null) {
       child = [];
     }
   }
 
-  TinyDisplayObject findObjectFromObjectName(String objectName) {
+  DisplayObject findObjectFromObjectName(String objectName) {
     if (this.objectName == objectName) {
       return this;
     }
-    for (TinyDisplayObject d in child) {
-      TinyDisplayObject t = d.findObjectFromObjectName(objectName);
+    for (DisplayObject d in child) {
+      DisplayObject t = d.findObjectFromObjectName(objectName);
       if (t != null) {
         return t;
       }
@@ -31,12 +31,12 @@ class TinyDisplayObject {
     return null;
   }
 
-  Future addChild(TinyDisplayObject d) async {
+  Future addChild(DisplayObject d) async {
     await new Future.value();
     child.add(d);
   }
 
-  Future rmChild(TinyDisplayObject d) async {
+  Future rmChild(DisplayObject d) async {
     await new Future.value();
     child.remove(d);
     d.unattach();
@@ -44,16 +44,16 @@ class TinyDisplayObject {
 
   Future clearChild() async {
     await new Future.value();
-    for(TinyDisplayObject d in child) {
+    for(DisplayObject d in child) {
       rmChild(d);
     }
   }
 
-  void onChangeStageStatus(TinyStage stage, TinyDisplayObject parent) {}
+  void onChangeStageStatus(TinyStage stage, DisplayObject parent) {}
 
-  void changeStageStatus(TinyStage stage, TinyDisplayObject parent) {
+  void changeStageStatus(TinyStage stage, DisplayObject parent) {
     onChangeStageStatus(stage, parent);
-    for (TinyDisplayObject d in child) {
+    for (DisplayObject d in child) {
       d.changeStageStatus(stage, this);
     }
   }
@@ -62,7 +62,7 @@ class TinyDisplayObject {
 
   void init(TinyStage stage) {
     onInit(stage);
-    for (TinyDisplayObject d in child) {
+    for (DisplayObject d in child) {
       d.init(stage);
     }
   }
@@ -71,33 +71,33 @@ class TinyDisplayObject {
 //    print("--------A");
   }
 
-  void tick(TinyStage stage, TinyDisplayObject parent, int timeStamp) {
+  void tick(TinyStage stage, DisplayObject parent, int timeStamp) {
     attachCheck(stage, parent);
     onTick(stage, timeStamp);
-    for (TinyDisplayObject d in child) {
+    for (DisplayObject d in child) {
       d.tick(stage, this, timeStamp);
     }
   }
 
-  void onPaint(TinyStage stage, TinyCanvas canvas) {
+  void onPaint(TinyStage stage, Canvas canvas) {
 //    print("--------B");
   }
 
-  void paint(TinyStage stage, TinyCanvas canvas) {
+  void paint(TinyStage stage, Canvas canvas) {
     //attachCheck();
     onPaint(stage, canvas);
-    for (TinyDisplayObject d in child) {
+    for (DisplayObject d in child) {
       canvas.pushMulMatrix(d.mat);
       d.paint(stage, canvas);
       canvas.popMatrix();
     }
   }
 
-  bool touch(TinyStage stage, TinyDisplayObject parent, int id, TinyStagePointerType type, double x, double y) {
+  bool touch(TinyStage stage, DisplayObject parent, int id, StagePointerType type, double x, double y) {
     attachCheck(stage, parent);
     onTouchStart(stage, id, type, x, y);
     for(int i=0;i<child.length;i++) {
-      TinyDisplayObject d = child[child.length-(i+1)];
+      DisplayObject d = child[child.length-(i+1)];
       stage.pushMulMatrix(d.mat);
       bool r = d.touch(stage, this, id, type, x, y);
       stage.popMatrix();
@@ -113,14 +113,14 @@ class TinyDisplayObject {
     }
   }
 
-  bool onTouch(TinyStage stage, int id, TinyStagePointerType type, double globalX, globalY) {
+  bool onTouch(TinyStage stage, int id, StagePointerType type, double globalX, globalY) {
     return false;
   }
 
-  void onTouchStart(TinyStage stage, int id, TinyStagePointerType type, double x, double y) {
+  void onTouchStart(TinyStage stage, int id, StagePointerType type, double x, double y) {
   }
 
-  void onTouchEnd(TinyStage stage, int id, TinyStagePointerType type, double x, double y) {
+  void onTouchEnd(TinyStage stage, int id, StagePointerType type, double x, double y) {
     ;
   }
 
@@ -128,14 +128,14 @@ class TinyDisplayObject {
 
   void unattach() {
     onUnattach();
-    for (TinyDisplayObject d in child) {
+    for (DisplayObject d in child) {
       d.unattach();
     }
     isAttach = false;
   }
 
-  void onAttach(TinyStage stage, TinyDisplayObject parent) {}
-  attachCheck(TinyStage stage, TinyDisplayObject parent) {
+  void onAttach(TinyStage stage, DisplayObject parent) {}
+  attachCheck(TinyStage stage, DisplayObject parent) {
     if(isAttach == false) {
       isAttach = true;
       onAttach(stage, parent);

@@ -2,7 +2,7 @@ part of tinygame_flutter;
 
 
 
-class TinyFlutterImage implements core.TinyImage {
+class TinyFlutterImage implements core.Image {
   ImageInfo rawImage;
   TinyFlutterImage(this.rawImage);
 

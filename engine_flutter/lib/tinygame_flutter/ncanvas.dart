@@ -1,6 +1,6 @@
 part of tinygame_flutter;
 
-class TinyFlutterNCanvas extends core.TinyCanvas {
+class TinyFlutterNCanvas extends core.Canvas {
 
   TinyFlutterNCanvas(this.canvas, {this.useDrawVertexForPrimtive: true}) {
     numOfCircleElm = 12;
@@ -12,7 +12,7 @@ class TinyFlutterNCanvas extends core.TinyCanvas {
   List<Offset> _textureCoordinates = [];
   List<Color> _colors = [];
   List<int> _indicies = [];
-  core.TinyImage _curImage = null;
+  core.Image _curImage = null;
   int _numOfCircleElm;
   int get numOfCircleElm => _numOfCircleElm;
   bool useDrawVertexForPrimtive;
@@ -30,7 +30,7 @@ class TinyFlutterNCanvas extends core.TinyCanvas {
   }
 
   @override
-  void drawOval(core.TinyStage stage, core.TinyRect rect, core.TinyPaint paint, {List<Object> cache: null}) {
+  void drawOval(core.TinyStage stage, core.Rect rect, core.Paint paint, {List<Object> cache: null}) {
     if (_curImage != null) {
       flush();
     }
@@ -41,7 +41,7 @@ class TinyFlutterNCanvas extends core.TinyCanvas {
     }
   }
 
-  void drawStrokeOval(core.TinyStage stage, core.TinyRect rect, core.TinyPaint paint) {
+  void drawStrokeOval(core.TinyStage stage, core.Rect rect, core.Paint paint) {
     if (_curImage != null) {
       flush();
     }
@@ -93,7 +93,7 @@ class TinyFlutterNCanvas extends core.TinyCanvas {
   }
 
   Vector3 s = new Vector3(0.0, 0.0, 0.0);
-  void drawFillOval(core.TinyStage stage, core.TinyRect rect, core.TinyPaint paint) {
+  void drawFillOval(core.TinyStage stage, core.Rect rect, core.Paint paint) {
     if (_curImage != null) {
       flush();
     }
@@ -147,7 +147,7 @@ class TinyFlutterNCanvas extends core.TinyCanvas {
   Vector3 v4 = new Vector3(0.0, 0.0, 0.0);
 
   @override
-  void drawLine(core.TinyStage stage, core.TinyPoint p1, core.TinyPoint p2, core.TinyPaint paint, {List<Object> cache: null}) {
+  void drawLine(core.TinyStage stage, core.Point p1, core.Point p2, core.Paint paint, {List<Object> cache: null}) {
     if (_curImage != null) {
       flush();
     }
@@ -184,7 +184,7 @@ class TinyFlutterNCanvas extends core.TinyCanvas {
   }
 
   @override
-  void drawRect(core.TinyStage stage, core.TinyRect rect, core.TinyPaint paint, {List<Object> cache: null}) {
+  void drawRect(core.TinyStage stage, core.Rect rect, core.Paint paint, {List<Object> cache: null}) {
     if (_curImage != null) {
       flush();
     }
@@ -195,7 +195,7 @@ class TinyFlutterNCanvas extends core.TinyCanvas {
     }
   }
 
-  Paint toPaintWithRawFlutter(core.TinyPaint p) {
+  Paint toPaintWithRawFlutter(core.Paint p) {
     Paint pp = new Paint();
     pp.color = new Color(p.color.value);
     pp.strokeWidth = p.strokeWidth;
@@ -210,7 +210,7 @@ class TinyFlutterNCanvas extends core.TinyCanvas {
     return pp;
   }
 
-  void drawStrokeRect(core.TinyStage stage, core.TinyRect rect, core.TinyPaint paint) {
+  void drawStrokeRect(core.TinyStage stage, core.Rect rect, core.Paint paint) {
     if (_curImage != null) {
       flush();
     }
@@ -220,13 +220,13 @@ class TinyFlutterNCanvas extends core.TinyCanvas {
     double ey = rect.y + rect.h; //+paint.strokeWidth;
     double dx = paint.strokeWidth / 2;
 
-    drawLine(stage, new core.TinyPoint(sx, sy - dx), new core.TinyPoint(sx, ey + dx), paint);
-    drawLine(stage, new core.TinyPoint(sx + dx, ey), new core.TinyPoint(ex - dx, ey), paint);
-    drawLine(stage, new core.TinyPoint(ex, sy - dx), new core.TinyPoint(ex, ey + dx), paint);
-    drawLine(stage, new core.TinyPoint(sx + dx, sy), new core.TinyPoint(ex - dx, sy), paint);
+    drawLine(stage, new core.Point(sx, sy - dx), new core.Point(sx, ey + dx), paint);
+    drawLine(stage, new core.Point(sx + dx, ey), new core.Point(ex - dx, ey), paint);
+    drawLine(stage, new core.Point(ex, sy - dx), new core.Point(ex, ey + dx), paint);
+    drawLine(stage, new core.Point(sx + dx, sy), new core.Point(ex - dx, sy), paint);
   }
 
-  void drawFillRect(core.TinyStage stage, core.TinyRect rect, core.TinyPaint paint) {
+  void drawFillRect(core.TinyStage stage, core.Rect rect, core.Paint paint) {
     if (_curImage != null) {
       flush();
     }
@@ -267,7 +267,7 @@ class TinyFlutterNCanvas extends core.TinyCanvas {
   }
 
   @override
-  void clipRect(core.TinyStage stage, core.TinyRect rect, {Matrix4 m:null}) {
+  void clipRect(core.TinyStage stage, core.Rect rect, {Matrix4 m:null}) {
     flush();
     if(m == null) {
        m = getMatrix();
@@ -327,7 +327,7 @@ class TinyFlutterNCanvas extends core.TinyCanvas {
   }
 
 
-  void drawImageRect(core.TinyStage stage, core.TinyImage image, core.TinyRect src, core.TinyRect dst, core.TinyPaint paint, {core.TinyCanvasTransform transform: core.TinyCanvasTransform.NONE, List<Object> cache: null}) {
+  void drawImageRect(core.TinyStage stage, core.Image image, core.Rect src, core.Rect dst, core.Paint paint, {core.TinyCanvasTransform transform: core.TinyCanvasTransform.NONE, List<Object> cache: null}) {
     if (_curImage == null && _indicies.length > 0) {
       flush();
     } else if (_curImage != null && _curImage != image) {

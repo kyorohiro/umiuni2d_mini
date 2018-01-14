@@ -2,13 +2,13 @@ part of core;
 
 enum TinyPaintStyle { fill, stroke }
 
-class TinyPaint {
-  TinyColor color;
+class Paint {
+  Color color;
   TinyPaintStyle style = TinyPaintStyle.fill;
   double strokeWidth = 1.0;
-  TinyPaint({this.color}) {
+  Paint({this.color}) {
     if (this.color == null) {
-      color = new TinyColor.argb(0xff, 0xff, 0xff, 0xff);
+      color = new Color.argb(0xff, 0xff, 0xff, 0xff);
     }
   }
 }

@@ -20,7 +20,7 @@ class GameWidget extends SingleChildRenderObjectWidget {
   RenderObject createRenderObject(BuildContext context) {
     TinyGameBuilderForFlutter builder = new TinyGameBuilderForFlutter(assetsRoot:"web/");
     builder.useTestCanvas = true;
-    TinyGameRoot root = new TinyGameRoot(400.0, 300.0);
+    GameRoot root = new GameRoot(400.0, 300.0);
     TinyStage stage = builder.createStage(root: root);
     stage.start();
     stage.root.addChild(new PrimitiveTest(builder));

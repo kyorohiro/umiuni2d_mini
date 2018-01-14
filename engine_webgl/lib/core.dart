@@ -71,7 +71,7 @@ class CanvasElementText {
     }
   }
 
-  static html.CanvasRenderingContext2D resetCanvasImage({int fontSize: 25, bool isBold: false, bool isItalic: false, String fontFamily: "Century Gothic", core.TinyColor fillStyle: null, core.TinyColor strokeStyle: null, int textureHeight: 300, int textureWidth: 300, html.CanvasElement canvasElm: null}) {
+  static html.CanvasRenderingContext2D resetCanvasImage({int fontSize: 25, bool isBold: false, bool isItalic: false, String fontFamily: "Century Gothic", core.Color fillStyle: null, core.Color strokeStyle: null, int textureHeight: 300, int textureWidth: 300, html.CanvasElement canvasElm: null}) {
     //
     if (canvasElm == null) {
       canvasElm = new html.CanvasElement();
@@ -97,7 +97,7 @@ class CanvasElementText {
     return context;
   }
 
-  static html.CanvasElement makeImage(String message, {core.TinyColor fillColor: null, core.TinyColor strokeColor: null, num fontsize: 25, bool isBold: false, bool isItalic: false, String fontFamily: "Century Gothic", int height: 300, int width: 300, html.CanvasElement canvasElm: null, CanvasElementTextAlign align: CanvasElementTextAlign.center_center, bool resizeHeight: true}) {
+  static html.CanvasElement makeImage(String message, {core.Color fillColor: null, core.Color strokeColor: null, num fontsize: 25, bool isBold: false, bool isItalic: false, String fontFamily: "Century Gothic", int height: 300, int width: 300, html.CanvasElement canvasElm: null, CanvasElementTextAlign align: CanvasElementTextAlign.center_center, bool resizeHeight: true}) {
     if (canvasElm == null) {
       canvasElm = new html.CanvasElement();
     }

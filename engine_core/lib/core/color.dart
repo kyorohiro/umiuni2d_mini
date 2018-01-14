@@ -1,12 +1,12 @@
 part of core;
 
 
-class TinyColor {
-  static final TinyColor black = new TinyColor.argb(0xff, 0x00, 0x00, 0x00);
-  static final TinyColor white = new TinyColor.argb(0xff, 0xff, 0xff, 0xff);
+class Color {
+  static final Color black = new Color.argb(0xff, 0x00, 0x00, 0x00);
+  static final Color white = new Color.argb(0xff, 0xff, 0xff, 0xff);
 
   int value = 0;
-  TinyColor(this.value) {}
+  Color(this.value) {}
   int get a => (value >> 24) & 0xff;
   int get r => (value >> 16) & 0xff;
   int get g => (value >> 8) & 0xff;
@@ -16,7 +16,7 @@ class TinyColor {
   double get gf => g / 255.0;
   double get bf => b / 255.0;
 
-  TinyColor.argb(int a, int r, int g, int b) {
+  Color.argb(int a, int r, int g, int b) {
     value |= (a & 0xff) << 24;
     value |= (r & 0xff) << 16;
     value |= (g & 0xff) << 8;
@@ -25,7 +25,7 @@ class TinyColor {
   }
 
   @override
-  bool operator ==(o) => o is TinyColor && o.value == value;
+  bool operator ==(o) => o is Color && o.value == value;
 
   @override
   int get hashCode => JenkinsHash.calc([value.hashCode]);

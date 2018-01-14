@@ -1,6 +1,6 @@
 part of core;
 
-enum TinyStagePointerType { CANCEL, UP, DOWN, MOVE }
+enum StagePointerType { CANCEL, UP, DOWN, MOVE }
 
 abstract class TinyStage {
   double get x;
@@ -13,10 +13,10 @@ abstract class TinyStage {
   double get paddingLeft;
 
 
-  TinyDisplayObject get root;
-  void set root(TinyDisplayObject v);
+  DisplayObject get root;
+  void set root(DisplayObject v);
 
-  TinyGameBuilder get builder;
+  GameBuilder get builder;
   bool animeIsStart = false;
   int animeId = 0;
   bool startable = false;
@@ -34,9 +34,9 @@ abstract class TinyStage {
   //
   void kick(int timeStamp);
 
-  void kickPaint(TinyStage stage, TinyCanvas canvas) ;
+  void kickPaint(TinyStage stage, Canvas canvas) ;
 
-  void kickTouch(TinyStage stage, int id, TinyStagePointerType type, double x, double y);
+  void kickTouch(TinyStage stage, int id, StagePointerType type, double x, double y);
 
   List<Matrix4> get mats;
 
@@ -55,15 +55,15 @@ abstract class TinyStage {
 
   Vector3 getCurrentPositionOnDisplayObject(double globalX, double globalY) ;
 
-  static String toStringPointerType(TinyStagePointerType type) {
+  static String toStringPointerType(StagePointerType type) {
     switch (type) {
-      case TinyStagePointerType.CANCEL:
+      case StagePointerType.CANCEL:
         return "pointercancel";
-      case TinyStagePointerType.UP:
+      case StagePointerType.UP:
         return "pointerup";
-      case TinyStagePointerType.DOWN:
+      case StagePointerType.DOWN:
         return "pointerdown";
-      case TinyStagePointerType.MOVE:
+      case StagePointerType.MOVE:
         return "pointermove";
       default:
         return "";
@@ -72,15 +72,15 @@ abstract class TinyStage {
 }
 
 
-class TinyStageBase {
+class StageBase {
   TinyStage thisStage;
-  TinyStageBase(this.thisStage) {
+  StageBase(this.thisStage) {
   }
 
 
-  TinyDisplayObject _root;
-  TinyDisplayObject get root => _root;
-  void set root(TinyDisplayObject v) {
+  DisplayObject _root;
+  DisplayObject get root => _root;
+  void set root(DisplayObject v) {
     _root = v;
   }
 
@@ -94,13 +94,13 @@ class TinyStageBase {
     //markPaint();
   }
 
-  void kickPaint(TinyStage stage, TinyCanvas canvas) {
+  void kickPaint(TinyStage stage, Canvas canvas) {
     canvas.pushMulMatrix(root.mat);
     root.paint(stage, canvas);
     canvas.popMatrix();
   }
 
-  void kickTouch(TinyStage stage, int id, TinyStagePointerType type, double x, double y) {
+  void kickTouch(TinyStage stage, int id, StagePointerType type, double x, double y) {
     stage.pushMulMatrix(root.mat);
     root.touch(stage, null, id, type, x, y);
     stage.popMatrix();

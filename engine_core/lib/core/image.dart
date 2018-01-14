@@ -1,6 +1,6 @@
 part of core;
 
-abstract class TinyImage {
+abstract class Image {
   int get h;
   int get w;
   void dispose();

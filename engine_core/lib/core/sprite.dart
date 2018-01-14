@@ -1,7 +1,7 @@
 part of core;
 
-class TinySprite extends TinyDisplayObjectEx {
-  TinyImage image;
+class Sprite extends DisplayObjectEx {
+  Image image;
   double centerX;
   double centerY;
 
@@ -60,12 +60,12 @@ class TinySprite extends TinyDisplayObjectEx {
     _update = true;
   }
 
-  List<TinyRect> _src = [];
-  List<TinyRect> _dst = [];
+  List<Rect> _src = [];
+  List<Rect> _dst = [];
   List<TinyCanvasTransform> _trans = [];
-  TinyPaint _paint;
+  Paint _paint;
 
-  TinySprite.simple(this.image, {this.centerX, this.centerY, List<TinyRect> srcs, List<TinyRect> dsts, List<TinyCanvasTransform> transforms}) {
+  Sprite.simple(this.image, {this.centerX, this.centerY, List<Rect> srcs, List<Rect> dsts, List<TinyCanvasTransform> transforms}) {
     if (centerX == null) {
       centerX = image.w / 2;
     }
@@ -77,11 +77,11 @@ class TinySprite extends TinyDisplayObjectEx {
       _dst.addAll(dsts);
       _trans.addAll(transforms);
     } else {
-      _src.add(new TinyRect(0.0, 0.0, image.w.toDouble(), image.h.toDouble()));
-      _dst.add(new TinyRect(0.0, 0.0, image.w.toDouble(), image.h.toDouble()));
+      _src.add(new Rect(0.0, 0.0, image.w.toDouble(), image.h.toDouble()));
+      _dst.add(new Rect(0.0, 0.0, image.w.toDouble(), image.h.toDouble()));
       _trans.add(TinyCanvasTransform.NONE);
     }
-    _paint = new TinyPaint();
+    _paint = new Paint();
   }
 
   void updateMat() {
@@ -111,7 +111,7 @@ class TinySprite extends TinyDisplayObjectEx {
     updateMat();
   }
 
-  void onPaint(TinyStage stage, TinyCanvas canvas) {
+  void onPaint(TinyStage stage, Canvas canvas) {
     int id = currentFrameID;
     if (id >= _src.length) {
       id = _src.length - 1;

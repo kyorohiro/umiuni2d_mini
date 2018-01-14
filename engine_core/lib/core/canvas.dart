@@ -3,17 +3,17 @@ part of core;
 
 enum TinyCanvasTransform { NONE, ROT90, ROT180, ROT270, MIRROR, MIRROR_ROT90, MIRROR_ROT180, MIRROR_ROT270, }
 
-abstract class TinyCanvas {
-  void drawOval(TinyStage stage, TinyRect rect, TinyPaint paint, {List<Object> cache: null});
-  void drawRect(TinyStage stage, TinyRect rect, TinyPaint paint, {List<Object> cache: null});
-  void drawLine(TinyStage stage, TinyPoint p1, TinyPoint p2, TinyPaint paint, {List<Object> cache: null});
-  void clipRect(TinyStage stage, TinyRect rect, {Matrix4 m: null});
+abstract class Canvas {
+  void drawOval(TinyStage stage, Rect rect, Paint paint, {List<Object> cache: null});
+  void drawRect(TinyStage stage, Rect rect, Paint paint, {List<Object> cache: null});
+  void drawLine(TinyStage stage, Point p1, Point p2, Paint paint, {List<Object> cache: null});
+  void clipRect(TinyStage stage, Rect rect, {Matrix4 m: null});
   void clearClip(TinyStage stage);
-  void drawImageRect(TinyStage stage, TinyImage image, TinyRect src, TinyRect dst, TinyPaint paint, {TinyCanvasTransform transform, List<Object> cache: null});
+  void drawImageRect(TinyStage stage, Image image, Rect src, Rect dst, Paint paint, {TinyCanvasTransform transform, List<Object> cache: null});
   //void drawText(TinyStage stage, String text, TinyRect rect, TinyPaint paint, {List<Object> cache: null});
 
   List<Matrix4> mats = [new Matrix4.identity()];
-  List<TinyRect> stockClipRect = [];
+  List<Rect> stockClipRect = [];
   List<Matrix4> stockClipMat = [];
 
   clear() {
@@ -40,7 +40,7 @@ abstract class TinyCanvas {
 
   void updateMatrix();
 
-  void pushClipRect(TinyStage stage, TinyRect rect) {
+  void pushClipRect(TinyStage stage, Rect rect) {
     stockClipRect.add(rect);
     stockClipMat.add(getMatrix());
     clipRect(stage, rect);

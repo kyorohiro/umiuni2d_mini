@@ -1,11 +1,11 @@
 part of core;
 
-abstract class TinyGameBuilder {
-  Map<String, TinyImage> cach = {};
+abstract class GameBuilder {
+  Map<String, Image> cach = {};
   Map<String, String> cachString = {};
   Map<String, Uint8List> cachBytes = {};
 
-  TinyStage createStage({TinyDisplayObject root});
+  TinyStage createStage({DisplayObject root});
 
   Future<String> getLocale();
 
@@ -13,21 +13,21 @@ abstract class TinyGameBuilder {
 
   Future<String> loadString(String path);
 
-  Future<TinyImage> loadImage(String path);
+  Future<Image> loadImage(String path);
 
   Future<Uint8List> loadBytes(String path);
 }
 
-abstract class TinyGameBuilderWithCaches {
-  TinyGameBuilder _base;
-  TinyGameBuilderWithCaches(TinyGameBuilder base) {
+abstract class GameBuilderWithCaches {
+  GameBuilder _base;
+  GameBuilderWithCaches(GameBuilder base) {
     this._base = base;
   }
-  Map<String, TinyImage> cach = {};
+  Map<String, Image> cach = {};
   Map<String, String> cachString = {};
   Map<String, Uint8List> cachBytes = {};
   //
-  Future<TinyImage> loadImage(String path) async {
+  Future<Image> loadImage(String path) async {
     if (cach.containsKey(path)) {
       return cach[path];
     }
@@ -65,7 +65,7 @@ abstract class TinyGameBuilderWithCaches {
     return null;
   }
 
-  TinyImage getImage(String path) {
+  Image getImage(String path) {
     if (cach.containsKey(path)) {
       return cach[path];
     }
@@ -73,12 +73,12 @@ abstract class TinyGameBuilderWithCaches {
   }
 
   Future clearImageCash({bool callDispose: true, List<String> excepts: null}) async {
-    Map<String, TinyImage> nextImageCach = {};
+    Map<String, Image> nextImageCach = {};
     excepts = (excepts == null ? [] : excepts);
     if (callDispose == true) {
       for (String k in cach.keys) {
         if (false == excepts.contains(k)) {
-          TinyImage i = cach[k];
+          Image i = cach[k];
           i.dispose();
         } else {
           nextImageCach[k] = cach[k];

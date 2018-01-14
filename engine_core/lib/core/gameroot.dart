@@ -1,6 +1,6 @@
 part of core;
 
-class TinyGameRoot extends TinyDisplayObject {
+class GameRoot extends DisplayObject {
   double w = 800.0;
   double h = 600.0;
   double ratioW = 1.0;
@@ -8,12 +8,12 @@ class TinyGameRoot extends TinyDisplayObject {
   double radio = 1.0;
   double l = 0.0;
   double t = 0.0;
-  TinyColor bkcolor;
+  Color bkcolor;
   bool isClipRect;
 
-  TinyGameRoot(this.w, this.h, {this.bkcolor, this.isClipRect:true}) {
+  GameRoot(this.w, this.h, {this.bkcolor, this.isClipRect:true}) {
     if (bkcolor == null) {
-      bkcolor = new TinyColor.argb(0xff, 0xee, 0xee, 0xff);
+      bkcolor = new Color.argb(0xff, 0xee, 0xee, 0xff);
     }
   }
 
@@ -28,7 +28,7 @@ class TinyGameRoot extends TinyDisplayObject {
     mat.scale(radio, radio, 1.0);
   }
 
-  bool touch(TinyStage stage, TinyDisplayObject parent, int id, TinyStagePointerType type, double x, double y) {
+  bool touch(TinyStage stage, DisplayObject parent, int id, StagePointerType type, double x, double y) {
     //  stage.pushMulMatrix(mat);
       return super.touch(stage, parent, id, type, x, y);
       //stage.popMatrix();
@@ -38,8 +38,8 @@ class TinyGameRoot extends TinyDisplayObject {
     updatePosition(stage, timeStamp);
   }
 
-  void paint(TinyStage stage, TinyCanvas canvas) {
-    TinyRect rect = new TinyRect(0.0, 0.0, w, h);
+  void paint(TinyStage stage, Canvas canvas) {
+    Rect rect = new Rect(0.0, 0.0, w, h);
 //    canvas.pushMulMatrix(mat);
     if(isClipRect == true) {
       canvas.pushClipRect(stage, rect);
@@ -51,9 +51,9 @@ class TinyGameRoot extends TinyDisplayObject {
 //    canvas.popMatrix();
   }
 
-  void onPaint(TinyStage stage, TinyCanvas canvas) {
-    TinyRect rect = new TinyRect(0.0, 0.0, w, h);
-    TinyPaint paint = new TinyPaint();
+  void onPaint(TinyStage stage, Canvas canvas) {
+    Rect rect = new Rect(0.0, 0.0, w, h);
+    Paint paint = new Paint();
     paint.color = bkcolor;
     canvas.drawRect(stage, rect, paint);
   }

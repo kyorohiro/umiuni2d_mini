@@ -1,14 +1,14 @@
 part of core;
 
-class TinyRect {
+class Rect {
   double x;
   double y;
   double w;
   double h;
-  TinyRect(this.x, this.y, this.w, this.h) {}
+  Rect(this.x, this.y, this.w, this.h) {}
 
   @override
-  bool operator ==(o) => o is TinyRect && o.x == x && o.y == y && o.w == w && o.h == h;
+  bool operator ==(o) => o is Rect && o.x == x && o.y == y && o.w == w && o.h == h;
 
   @override
   int get hashCode => JenkinsHash.calc([x.hashCode, y.hashCode, w.hashCode, h.hashCode]);

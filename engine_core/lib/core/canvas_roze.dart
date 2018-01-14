@@ -1,12 +1,12 @@
 part of core;
 
-abstract class TinyCanvasRoze extends TinyCanvas {
+abstract class CanvasRoze extends Canvas {
 
   double get contextWidht;
   double get contextHeight;
-  void drawVertex(List<double> svertex, List<int> index, TinyColor color);
+  void drawVertex(List<double> svertex, List<int> index, Color color);
   void clearClip(TinyStage stage);
-  void clipRect(TinyStage stage, TinyRect rect, {Matrix4 m:null});
+  void clipRect(TinyStage stage, Rect rect, {Matrix4 m:null});
 
 
 
@@ -37,7 +37,7 @@ abstract class TinyCanvasRoze extends TinyCanvas {
   List<double> flVert = [];
   List<int> flInde = [];
   List<double> flTex = [];
-  TinyImage flImg = null;
+  Image flImg = null;
   double flZ = 0.0;
   void clear() {
     stencilV = 1;
@@ -55,7 +55,7 @@ abstract class TinyCanvasRoze extends TinyCanvas {
 
   void flush() {
     if (flVert.length != 0) {
-      drawVertex(flVert, flInde, new TinyColor.argb(0xaa, 0xff, 0xaa, 0xaa));
+      drawVertex(flVert, flInde, new Color.argb(0xaa, 0xff, 0xaa, 0xaa));
       flVert.clear();
       flInde.clear();
       flTex.clear();
@@ -63,7 +63,7 @@ abstract class TinyCanvasRoze extends TinyCanvas {
     }
   }
 
-  void drawOval(TinyStage stage, TinyRect rect, TinyPaint paint, {List<Object> cache: null}) {
+  void drawOval(TinyStage stage, Rect rect, Paint paint, {List<Object> cache: null}) {
     if (paint.style == TinyPaintStyle.fill) {
       drawFillOval(stage, rect, paint);
     } else {
@@ -71,7 +71,7 @@ abstract class TinyCanvasRoze extends TinyCanvas {
     }
   }
 
-  void drawFillOval(TinyStage stage, TinyRect rect, TinyPaint paint) {
+  void drawFillOval(TinyStage stage, Rect rect, Paint paint) {
     double cx = rect.x + rect.w / 2.0;
     double cy = rect.y + rect.h / 2.0;
     double a = rect.w / 2;
@@ -123,7 +123,7 @@ abstract class TinyCanvasRoze extends TinyCanvas {
     }
   }
 
-  void drawStrokeOval(TinyStage stage, TinyRect rect, TinyPaint paint) {
+  void drawStrokeOval(TinyStage stage, Rect rect, Paint paint) {
     double cx = rect.x + rect.w / 2.0;
     double cy = rect.y + rect.h / 2.0;
     double a = (rect.w + paint.strokeWidth) / 2;
@@ -169,7 +169,7 @@ abstract class TinyCanvasRoze extends TinyCanvas {
     }
   }
 
-  void drawRect(TinyStage stage, TinyRect rect, TinyPaint paint, {List<Object> cache: null}) {
+  void drawRect(TinyStage stage, Rect rect, Paint paint, {List<Object> cache: null}) {
     if (paint.style == TinyPaintStyle.fill) {
       drawFillRect(stage, rect, paint);
     } else {
@@ -177,7 +177,7 @@ abstract class TinyCanvasRoze extends TinyCanvas {
     }
   }
 
-  void drawFillRect(TinyStage stage, TinyRect rect, TinyPaint paint,{Matrix4 m:null}) {
+  void drawFillRect(TinyStage stage, Rect rect, Paint paint,{Matrix4 m:null}) {
     if(m == null) {
       m = calcMat();
     }
@@ -218,7 +218,7 @@ abstract class TinyCanvasRoze extends TinyCanvas {
     flInde.addAll([b + 0, b + 1, b + 2, b + 1, b + 3, b + 2]);
   }
 
-  void drawStrokeRect(TinyStage stage, TinyRect rect, TinyPaint paint) {
+  void drawStrokeRect(TinyStage stage, Rect rect, Paint paint) {
     Matrix4 m = calcMat();
     double sx = rect.x + paint.strokeWidth / 2;
     double sy = rect.y + paint.strokeWidth / 2;
@@ -247,7 +247,7 @@ abstract class TinyCanvasRoze extends TinyCanvas {
 
 
 
-  void drawLine(TinyStage stage, TinyPoint p1, TinyPoint p2, TinyPaint paint, {List<Object> cache: null}) {
+  void drawLine(TinyStage stage, Point p1, Point p2, Paint paint, {List<Object> cache: null}) {
     Matrix4 m = calcMat();
     double d = math.sqrt(math.pow(p1.x - p2.x, 2) + math.pow(p1.y - p2.y, 2));
     double dy = -1 * paint.strokeWidth * (p2.x - p1.x) / (d * 2);
@@ -275,7 +275,7 @@ abstract class TinyCanvasRoze extends TinyCanvas {
 
 
   //bool a = false;
-  void drawImageRect(TinyStage stage, TinyImage image, TinyRect src, TinyRect dst, TinyPaint paint,
+  void drawImageRect(TinyStage stage, Image image, Rect src, Rect dst, Paint paint,
       {TinyCanvasTransform transform: TinyCanvasTransform.NONE, List<Object> cache: null}) {
 
     if (flImg != null && flImg != image) {
