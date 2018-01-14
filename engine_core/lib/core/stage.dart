@@ -2,7 +2,7 @@ part of core;
 
 enum StagePointerType { CANCEL, UP, DOWN, MOVE }
 
-abstract class TinyStage {
+abstract class Stage {
   double get x;
   double get y;
   double get w;
@@ -34,9 +34,9 @@ abstract class TinyStage {
   //
   void kick(int timeStamp);
 
-  void kickPaint(TinyStage stage, Canvas canvas) ;
+  void kickPaint(Stage stage, Canvas canvas) ;
 
-  void kickTouch(TinyStage stage, int id, StagePointerType type, double x, double y);
+  void kickTouch(Stage stage, int id, StagePointerType type, double x, double y);
 
   List<Matrix4> get mats;
 
@@ -73,7 +73,7 @@ abstract class TinyStage {
 
 
 class StageBase {
-  TinyStage thisStage;
+  Stage thisStage;
   StageBase(this.thisStage) {
   }
 
@@ -94,13 +94,13 @@ class StageBase {
     //markPaint();
   }
 
-  void kickPaint(TinyStage stage, Canvas canvas) {
+  void kickPaint(Stage stage, Canvas canvas) {
     canvas.pushMulMatrix(root.mat);
     root.paint(stage, canvas);
     canvas.popMatrix();
   }
 
-  void kickTouch(TinyStage stage, int id, StagePointerType type, double x, double y) {
+  void kickTouch(Stage stage, int id, StagePointerType type, double x, double y) {
     stage.pushMulMatrix(root.mat);
     root.touch(stage, null, id, type, x, y);
     stage.popMatrix();

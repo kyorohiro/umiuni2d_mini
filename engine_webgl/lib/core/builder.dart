@@ -11,7 +11,7 @@ class TinyGameBuilderForWebgl extends core.GameBuilder {
   double fontPower = 2.0;
   TinyGameBuilderForWebgl({this.assetsRoot:""}) {}
 
-  core.TinyStage createStage({core.DisplayObject root}) {
+  core.Stage createStage({core.DisplayObject root}) {
     if(root == null) {
       root = new core.DisplayObject();
     }

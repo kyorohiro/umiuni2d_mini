@@ -14,7 +14,7 @@ class TinyGameBuilderForFlutter extends core.GameBuilder {
   bool useDrawVertexForPrimtive = true;
 
   @override
-  core.TinyStage createStage({core.DisplayObject root}) {
+  core.Stage createStage({core.DisplayObject root}) {
     if(root == null) {
       root = new core.DisplayObject();
     }

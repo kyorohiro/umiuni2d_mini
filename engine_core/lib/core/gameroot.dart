@@ -17,7 +17,7 @@ class GameRoot extends DisplayObject {
     }
   }
 
-  void updatePosition(TinyStage stage, int timeStamp) {
+  void updatePosition(Stage stage, int timeStamp) {
     ratioW = (stage.w - (stage.paddingLeft+stage.paddingRight)) / w;
     ratioH = (stage.h - (stage.paddingTop+stage.paddingBottom)) / h;
     radio = (ratioW < ratioH ? ratioW : ratioH);
@@ -28,17 +28,17 @@ class GameRoot extends DisplayObject {
     mat.scale(radio, radio, 1.0);
   }
 
-  bool touch(TinyStage stage, DisplayObject parent, int id, StagePointerType type, double x, double y) {
+  bool touch(Stage stage, DisplayObject parent, int id, StagePointerType type, double x, double y) {
     //  stage.pushMulMatrix(mat);
       return super.touch(stage, parent, id, type, x, y);
       //stage.popMatrix();
     }
 
-  void onTick(TinyStage stage, int timeStamp) {
+  void onTick(Stage stage, int timeStamp) {
     updatePosition(stage, timeStamp);
   }
 
-  void paint(TinyStage stage, Canvas canvas) {
+  void paint(Stage stage, Canvas canvas) {
     Rect rect = new Rect(0.0, 0.0, w, h);
 //    canvas.pushMulMatrix(mat);
     if(isClipRect == true) {
@@ -51,7 +51,7 @@ class GameRoot extends DisplayObject {
 //    canvas.popMatrix();
   }
 
-  void onPaint(TinyStage stage, Canvas canvas) {
+  void onPaint(Stage stage, Canvas canvas) {
     Rect rect = new Rect(0.0, 0.0, w, h);
     Paint paint = new Paint();
     paint.color = bkcolor;

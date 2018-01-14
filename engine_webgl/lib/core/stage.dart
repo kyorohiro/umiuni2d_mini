@@ -1,6 +1,6 @@
 part of tinygame_webgl;
 
-class TinyWebglStage extends core.TinyStage {
+class TinyWebglStage extends core.Stage {
   TinyWebglContext glContext;
   double get x => 0.0;
   double get y => 0.0;
@@ -280,12 +280,12 @@ class TinyWebglStage extends core.TinyStage {
   }
 
   @override
-  void kickPaint(core.TinyStage stage, core.Canvas canvas) {
+  void kickPaint(core.Stage stage, core.Canvas canvas) {
     stageBase.kickPaint(stage, canvas);
   }
 
   @override
-  void kickTouch(core.TinyStage stage, int id, core.StagePointerType type, double x, double y) {
+  void kickTouch(core.Stage stage, int id, core.StagePointerType type, double x, double y) {
     stageBase.kickTouch(stage, id, type, x, y);
   }
 

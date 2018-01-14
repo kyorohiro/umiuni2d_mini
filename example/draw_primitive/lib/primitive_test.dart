@@ -11,7 +11,7 @@ class PrimitiveTest extends DisplayObject {
     });
   }
 
-  void onPaint(TinyStage stage, Canvas canvas) {
+  void onPaint(Stage stage, Canvas canvas) {
     if(image == null) {
       return;
     }

@@ -18,35 +18,35 @@ class DisplayObjectEx extends DisplayObject {
   }
 
   @override
-  void onChangeStageStatus(TinyStage stage, DisplayObject parent) {
+  void onChangeStageStatus(Stage stage, DisplayObject parent) {
     for(TExpansionBase b in extensions) {
       b.onChangeStageStatus(stage, parent);
     }
   }
 
   @override
-  void onInit(TinyStage stage) {
+  void onInit(Stage stage) {
     for(TExpansionBase b in extensions) {
       b.onInit(stage);
     }
   }
 
   @override
-  void onTick(TinyStage stage, int timeStamp) {
+  void onTick(Stage stage, int timeStamp) {
     for(TExpansionBase b in extensions) {
       b.onTick(stage, timeStamp);
     }
   }
 
   @override
-  void onPaint(TinyStage stage, Canvas canvas){
+  void onPaint(Stage stage, Canvas canvas){
     for(TExpansionBase b in extensions) {
       b.onPaint(stage, canvas);
     }
   }
 
   @override
-  bool onTouch(TinyStage stage, int id, StagePointerType type, double globalX, globalY){
+  bool onTouch(Stage stage, int id, StagePointerType type, double globalX, globalY){
     bool ret = false;
     for(TExpansionBase b in extensions) {
       ret = ret ||  b.onTouch(stage, id, type, globalX, globalY);
@@ -55,14 +55,14 @@ class DisplayObjectEx extends DisplayObject {
   }
 
   @override
-  void onTouchStart(TinyStage stage, int id, StagePointerType type, double x, double y){
+  void onTouchStart(Stage stage, int id, StagePointerType type, double x, double y){
     for(TExpansionBase b in extensions) {
       b.onTouchStart(stage, id, type, x, y);
     }
   }
 
   @override
-  void onTouchEnd(TinyStage stage, int id, StagePointerType type, double x, double y){
+  void onTouchEnd(Stage stage, int id, StagePointerType type, double x, double y){
     for(TExpansionBase b in extensions) {
       b.onTouchEnd(stage, id, type, x, y);
     }
@@ -76,7 +76,7 @@ class DisplayObjectEx extends DisplayObject {
   }
 
   @override
-  void onAttach(TinyStage stage, DisplayObject parent) {
+  void onAttach(Stage stage, DisplayObject parent) {
     for(TExpansionBase b in extensions) {
       b.onAttach(stage, parent);
     }

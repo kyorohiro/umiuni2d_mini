@@ -162,13 +162,13 @@ class TinyWebglCanvas extends core.CanvasRoze {
   }
 
 
-  void clearClip(core.TinyStage stage) {
+  void clearClip(core.Stage stage) {
     flush();
     stencilV = 1;
     GL.clearStencil(0);
   }
 
-  void clipRect(core.TinyStage stage, core.Rect rect, {Matrix4 m:null}) {
+  void clipRect(core.Stage stage, core.Rect rect, {Matrix4 m:null}) {
     flush();
     GL.colorMask(false, false, false, false);
     GL.depthMask(false);

@@ -1,6 +1,6 @@
 part of tinygame_flutter;
 
-class TinyFlutterStage extends RenderConstrainedBox implements core.TinyStage {
+class TinyFlutterStage extends RenderConstrainedBox implements core.Stage {
   core.StageBase stageBase;
   TinyFlutterStage(this._builder, core.DisplayObject root,
     { this.tickInPerFrame: true, this.useTestCanvas: false,
@@ -300,12 +300,12 @@ bool hitTestSelf(sky.Offset position) => true;
   }
 
   @override
-  void kickPaint(core.TinyStage stage, core.Canvas canvas) {
+  void kickPaint(core.Stage stage, core.Canvas canvas) {
     stageBase.kickPaint(stage, canvas);
   }
 
   @override
-  void kickTouch(core.TinyStage stage, int id, core.StagePointerType type, double x, double y) {
+  void kickTouch(core.Stage stage, int id, core.StagePointerType type, double x, double y) {
     stageBase.kickTouch(stage, id, type, x, y);
   }
 

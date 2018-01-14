@@ -5,7 +5,7 @@ abstract class GameBuilder {
   Map<String, String> cachString = {};
   Map<String, Uint8List> cachBytes = {};
 
-  TinyStage createStage({DisplayObject root});
+  Stage createStage({DisplayObject root});
 
   Future<String> getLocale();
 

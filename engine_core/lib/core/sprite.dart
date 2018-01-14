@@ -107,11 +107,11 @@ class Sprite extends DisplayObjectEx {
     return false;
   }
 
-  void onTick(TinyStage stage, int timeStamp) {
+  void onTick(Stage stage, int timeStamp) {
     updateMat();
   }
 
-  void onPaint(TinyStage stage, Canvas canvas) {
+  void onPaint(Stage stage, Canvas canvas) {
     int id = currentFrameID;
     if (id >= _src.length) {
       id = _src.length - 1;

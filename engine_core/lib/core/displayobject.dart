@@ -4,13 +4,19 @@ class DisplayObject {
   String objectName = "none";
   List<DisplayObject> child = [];
   Matrix4 mat = new Matrix4.identity();
+
+  //
+  // remove start
+  //
   double get x => this.mat.storage[12];
   double get y => this.mat.storage[13];
   double get z => this.mat.storage[14];
   double get sx => (new Vector3(mat.storage[0], mat.storage[4], mat.storage[8])).length;
   double get sy => (new Vector3(mat.storage[1], mat.storage[5], mat.storage[9])).length;
   double get sz => (new Vector3(mat.storage[2], mat.storage[6], mat.storage[10])).length;
-
+  //
+  // remove end
+  //
 
   DisplayObject({this.child: null}) {
     if (child == null) {
@@ -49,29 +55,29 @@ class DisplayObject {
     }
   }
 
-  void onChangeStageStatus(TinyStage stage, DisplayObject parent) {}
+  void onChangeStageStatus(Stage stage, DisplayObject parent) {}
 
-  void changeStageStatus(TinyStage stage, DisplayObject parent) {
+  void changeStageStatus(Stage stage, DisplayObject parent) {
     onChangeStageStatus(stage, parent);
     for (DisplayObject d in child) {
       d.changeStageStatus(stage, this);
     }
   }
 
-  void onInit(TinyStage stage) {}
+  void onInit(Stage stage) {}
 
-  void init(TinyStage stage) {
+  void init(Stage stage) {
     onInit(stage);
     for (DisplayObject d in child) {
       d.init(stage);
     }
   }
 
-  void onTick(TinyStage stage, int timeStamp) {
+  void onTick(Stage stage, int timeStamp) {
 //    print("--------A");
   }
 
-  void tick(TinyStage stage, DisplayObject parent, int timeStamp) {
+  void tick(Stage stage, DisplayObject parent, int timeStamp) {
     attachCheck(stage, parent);
     onTick(stage, timeStamp);
     for (DisplayObject d in child) {
@@ -79,11 +85,11 @@ class DisplayObject {
     }
   }
 
-  void onPaint(TinyStage stage, Canvas canvas) {
+  void onPaint(Stage stage, Canvas canvas) {
 //    print("--------B");
   }
 
-  void paint(TinyStage stage, Canvas canvas) {
+  void paint(Stage stage, Canvas canvas) {
     //attachCheck();
     onPaint(stage, canvas);
     for (DisplayObject d in child) {
@@ -93,7 +99,7 @@ class DisplayObject {
     }
   }
 
-  bool touch(TinyStage stage, DisplayObject parent, int id, StagePointerType type, double x, double y) {
+  bool touch(Stage stage, DisplayObject parent, int id, StagePointerType type, double x, double y) {
     attachCheck(stage, parent);
     onTouchStart(stage, id, type, x, y);
     for(int i=0;i<child.length;i++) {
@@ -113,14 +119,14 @@ class DisplayObject {
     }
   }
 
-  bool onTouch(TinyStage stage, int id, StagePointerType type, double globalX, globalY) {
+  bool onTouch(Stage stage, int id, StagePointerType type, double globalX, globalY) {
     return false;
   }
 
-  void onTouchStart(TinyStage stage, int id, StagePointerType type, double x, double y) {
+  void onTouchStart(Stage stage, int id, StagePointerType type, double x, double y) {
   }
 
-  void onTouchEnd(TinyStage stage, int id, StagePointerType type, double x, double y) {
+  void onTouchEnd(Stage stage, int id, StagePointerType type, double x, double y) {
     ;
   }
 
@@ -134,8 +140,8 @@ class DisplayObject {
     isAttach = false;
   }
 
-  void onAttach(TinyStage stage, DisplayObject parent) {}
-  attachCheck(TinyStage stage, DisplayObject parent) {
+  void onAttach(Stage stage, DisplayObject parent) {}
+  attachCheck(Stage stage, DisplayObject parent) {
     if(isAttach == false) {
       isAttach = true;
       onAttach(stage, parent);
