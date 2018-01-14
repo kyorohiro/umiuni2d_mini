@@ -1,6 +1,6 @@
 part of tinygame_flutter;
 
-class TinyGameBuilderForFlutter extends TinyGameBuilder {
+class TinyGameBuilderForFlutter extends core.TinyGameBuilder {
   String assetsRoot;
 
   TinyGameBuilderForFlutter({this.assetsRoot: "web/"}) {
@@ -14,15 +14,15 @@ class TinyGameBuilderForFlutter extends TinyGameBuilder {
   bool useDrawVertexForPrimtive = true;
 
   @override
-  TinyStage createStage({TinyDisplayObject root}) {
+  core.TinyStage createStage({core.TinyDisplayObject root}) {
     if(root == null) {
-      root = new TinyDisplayObject();
+      root = new core.TinyDisplayObject();
     }
     return new TinyFlutterStage(this, root, tickInPerFrame: tickInPerFrame, useTestCanvas: useTestCanvas, useDrawVertexForPrimtive: useDrawVertexForPrimtive);
   }
 
   @override
-  Future<TinyImage> loadImage(String path) async {
+  Future<core.TinyImage> loadImage(String path) async {
     return new TinyFlutterImage(await ResourceLoader.loadImage("${assetsPath}${path}"));
   }
 

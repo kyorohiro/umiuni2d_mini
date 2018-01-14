@@ -1,13 +1,13 @@
 part of tinygame_flutter;
 
-class TinyFlutterStage extends RenderConstrainedBox implements TinyStage {
-  TinyStageBase stageBase;
-  TinyFlutterStage(this._builder, TinyDisplayObject root,
+class TinyFlutterStage extends RenderConstrainedBox implements core.TinyStage {
+  core.TinyStageBase stageBase;
+  TinyFlutterStage(this._builder, core.TinyDisplayObject root,
     { this.tickInPerFrame: true, this.useTestCanvas: false,
       this.useDrawVertexForPrimtive: false, this.tickInterval: 15}
     ) : super(additionalConstraints: const BoxConstraints.expand())
       {
-    stageBase = new TinyStageBase(this);
+    stageBase = new core.TinyStageBase(this);
     this.root = root;
     this.canvas = null;
     init();
@@ -52,11 +52,11 @@ class TinyFlutterStage extends RenderConstrainedBox implements TinyStage {
   static const int kMaxOfTouch = 5;
   Map<int, TouchPoint> touchPoints = {};
 
-  TinyGameBuilder _builder;
+  core.TinyGameBuilder _builder;
 
   @override
-  TinyGameBuilder get builder => _builder;
-  TinyCanvas canvas;
+  core.TinyGameBuilder get builder => _builder;
+  core.TinyCanvas canvas;
   bool useTestCanvas = false; // use drawVertex
   bool tickInPerFrame;
   bool useDrawVertexForPrimtive;
@@ -233,19 +233,19 @@ bool hitTestSelf(sky.Offset position) => true;
 
   }
 
-  TinyStagePointerType toEvent(PointerEvent e) {
+  core.TinyStagePointerType toEvent(PointerEvent e) {
     if (e is PointerUpEvent) {
-      return TinyStagePointerType.UP;
+      return core.TinyStagePointerType.UP;
     } else if (e is PointerDownEvent) {
-      return TinyStagePointerType.DOWN;
+      return core.TinyStagePointerType.DOWN;
     } else if (e is PointerCancelEvent) {
-      return TinyStagePointerType.CANCEL;
+      return core.TinyStagePointerType.CANCEL;
     } else if (e is PointerMoveEvent) {
-      return TinyStagePointerType.MOVE;
+      return core.TinyStagePointerType.MOVE;
     } else if (e is PointerUpEvent) {
-      return TinyStagePointerType.UP;
+      return core.TinyStagePointerType.UP;
     } else {
-      return TinyStagePointerType.CANCEL;
+      return core.TinyStagePointerType.CANCEL;
     }
   }
 
@@ -287,10 +287,10 @@ bool hitTestSelf(sky.Offset position) => true;
   //
   //
   @override
-  TinyDisplayObject get root => stageBase.root;
+  core.TinyDisplayObject get root => stageBase.root;
 
   @override
-  void set root(TinyDisplayObject v) {
+  void set root(core.TinyDisplayObject v) {
     stageBase.root = v;
   }
 
@@ -300,12 +300,12 @@ bool hitTestSelf(sky.Offset position) => true;
   }
 
   @override
-  void kickPaint(TinyStage stage, TinyCanvas canvas) {
+  void kickPaint(core.TinyStage stage, core.TinyCanvas canvas) {
     stageBase.kickPaint(stage, canvas);
   }
 
   @override
-  void kickTouch(TinyStage stage, int id, TinyStagePointerType type, double x, double y) {
+  void kickTouch(core.TinyStage stage, int id, core.TinyStagePointerType type, double x, double y) {
     stageBase.kickTouch(stage, id, type, x, y);
   }
 

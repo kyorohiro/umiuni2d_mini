@@ -1,6 +1,6 @@
 part of tinygame_flutter;
 
-class TinyFlutterNCanvas extends TinyCanvas {
+class TinyFlutterNCanvas extends core.TinyCanvas {
 
   TinyFlutterNCanvas(this.canvas, {this.useDrawVertexForPrimtive: true}) {
     numOfCircleElm = 12;
@@ -12,7 +12,7 @@ class TinyFlutterNCanvas extends TinyCanvas {
   List<Offset> _textureCoordinates = [];
   List<Color> _colors = [];
   List<int> _indicies = [];
-  TinyImage _curImage = null;
+  core.TinyImage _curImage = null;
   int _numOfCircleElm;
   int get numOfCircleElm => _numOfCircleElm;
   bool useDrawVertexForPrimtive;
@@ -30,18 +30,18 @@ class TinyFlutterNCanvas extends TinyCanvas {
   }
 
   @override
-  void drawOval(TinyStage stage, TinyRect rect, TinyPaint paint, {List<Object> cache: null}) {
+  void drawOval(core.TinyStage stage, core.TinyRect rect, core.TinyPaint paint, {List<Object> cache: null}) {
     if (_curImage != null) {
       flush();
     }
-    if (paint.style == TinyPaintStyle.fill) {
+    if (paint.style == core.TinyPaintStyle.fill) {
       drawFillOval(stage, rect, paint);
     } else {
       drawStrokeOval(stage, rect, paint);
     }
   }
 
-  void drawStrokeOval(TinyStage stage, TinyRect rect, TinyPaint paint) {
+  void drawStrokeOval(core.TinyStage stage, core.TinyRect rect, core.TinyPaint paint) {
     if (_curImage != null) {
       flush();
     }
@@ -93,7 +93,7 @@ class TinyFlutterNCanvas extends TinyCanvas {
   }
 
   Vector3 s = new Vector3(0.0, 0.0, 0.0);
-  void drawFillOval(TinyStage stage, TinyRect rect, TinyPaint paint) {
+  void drawFillOval(core.TinyStage stage, core.TinyRect rect, core.TinyPaint paint) {
     if (_curImage != null) {
       flush();
     }
@@ -147,7 +147,7 @@ class TinyFlutterNCanvas extends TinyCanvas {
   Vector3 v4 = new Vector3(0.0, 0.0, 0.0);
 
   @override
-  void drawLine(TinyStage stage, TinyPoint p1, TinyPoint p2, TinyPaint paint, {List<Object> cache: null}) {
+  void drawLine(core.TinyStage stage, core.TinyPoint p1, core.TinyPoint p2, core.TinyPaint paint, {List<Object> cache: null}) {
     if (_curImage != null) {
       flush();
     }
@@ -184,33 +184,33 @@ class TinyFlutterNCanvas extends TinyCanvas {
   }
 
   @override
-  void drawRect(TinyStage stage, TinyRect rect, TinyPaint paint, {List<Object> cache: null}) {
+  void drawRect(core.TinyStage stage, core.TinyRect rect, core.TinyPaint paint, {List<Object> cache: null}) {
     if (_curImage != null) {
       flush();
     }
-    if (paint.style == TinyPaintStyle.fill) {
+    if (paint.style == core.TinyPaintStyle.fill) {
       drawFillRect(stage, rect, paint);
     } else {
       drawStrokeRect(stage, rect, paint);
     }
   }
 
-  Paint toPaintWithRawFlutter(TinyPaint p) {
+  Paint toPaintWithRawFlutter(core.TinyPaint p) {
     Paint pp = new Paint();
     pp.color = new Color(p.color.value);
     pp.strokeWidth = p.strokeWidth;
     switch (p.style) {
-      case TinyPaintStyle.fill:
+      case core.TinyPaintStyle.fill:
         pp.style = sky.PaintingStyle.fill;
         break;
-      case TinyPaintStyle.stroke:
+      case core.TinyPaintStyle.stroke:
         pp.style = sky.PaintingStyle.stroke;
         break;
     }
     return pp;
   }
 
-  void drawStrokeRect(TinyStage stage, TinyRect rect, TinyPaint paint) {
+  void drawStrokeRect(core.TinyStage stage, core.TinyRect rect, core.TinyPaint paint) {
     if (_curImage != null) {
       flush();
     }
@@ -220,13 +220,13 @@ class TinyFlutterNCanvas extends TinyCanvas {
     double ey = rect.y + rect.h; //+paint.strokeWidth;
     double dx = paint.strokeWidth / 2;
 
-    drawLine(stage, new TinyPoint(sx, sy - dx), new TinyPoint(sx, ey + dx), paint);
-    drawLine(stage, new TinyPoint(sx + dx, ey), new TinyPoint(ex - dx, ey), paint);
-    drawLine(stage, new TinyPoint(ex, sy - dx), new TinyPoint(ex, ey + dx), paint);
-    drawLine(stage, new TinyPoint(sx + dx, sy), new TinyPoint(ex - dx, sy), paint);
+    drawLine(stage, new core.TinyPoint(sx, sy - dx), new core.TinyPoint(sx, ey + dx), paint);
+    drawLine(stage, new core.TinyPoint(sx + dx, ey), new core.TinyPoint(ex - dx, ey), paint);
+    drawLine(stage, new core.TinyPoint(ex, sy - dx), new core.TinyPoint(ex, ey + dx), paint);
+    drawLine(stage, new core.TinyPoint(sx + dx, sy), new core.TinyPoint(ex - dx, sy), paint);
   }
 
-  void drawFillRect(TinyStage stage, TinyRect rect, TinyPaint paint) {
+  void drawFillRect(core.TinyStage stage, core.TinyRect rect, core.TinyPaint paint) {
     if (_curImage != null) {
       flush();
     }
@@ -260,14 +260,14 @@ class TinyFlutterNCanvas extends TinyCanvas {
   }
 
   @override
-  void clearClip(TinyStage stage, {List<Object> cache: null}) {
+  void clearClip(core.TinyStage stage, {List<Object> cache: null}) {
     flush();
     canvas.restore();
     canvas.save();
   }
 
   @override
-  void clipRect(TinyStage stage, TinyRect rect, {Matrix4 m:null}) {
+  void clipRect(core.TinyStage stage, core.TinyRect rect, {Matrix4 m:null}) {
     flush();
     if(m == null) {
        m = getMatrix();
@@ -327,7 +327,7 @@ class TinyFlutterNCanvas extends TinyCanvas {
   }
 
 
-  void drawImageRect(TinyStage stage, TinyImage image, TinyRect src, TinyRect dst, TinyPaint paint, {TinyCanvasTransform transform: TinyCanvasTransform.NONE, List<Object> cache: null}) {
+  void drawImageRect(core.TinyStage stage, core.TinyImage image, core.TinyRect src, core.TinyRect dst, core.TinyPaint paint, {core.TinyCanvasTransform transform: core.TinyCanvasTransform.NONE, List<Object> cache: null}) {
     if (_curImage == null && _indicies.length > 0) {
       flush();
     } else if (_curImage != null && _curImage != image) {
@@ -371,28 +371,28 @@ class TinyFlutterNCanvas extends TinyCanvas {
       double xe = src.x + src.w;
       double ye = src.y + src.h;
       switch (transform) {
-        case TinyCanvasTransform.NONE:
+        case core.TinyCanvasTransform.NONE:
           primitveTexInf = [new Offset(xs, ys), new Offset(xs, ye), new Offset(xe, ys), new Offset(xe, ye)];
           break;
-        case TinyCanvasTransform.ROT90:
+        case core.TinyCanvasTransform.ROT90:
           primitveTexInf = [new Offset(xs, ye), new Offset(xe, ye), new Offset(xs, ys), new Offset(xe, ys)];
           break;
-        case TinyCanvasTransform.ROT180:
+        case core.TinyCanvasTransform.ROT180:
           primitveTexInf = [new Offset(xe, ye), new Offset(xe, ys), new Offset(xs, ye), new Offset(xs, ys)];
           break;
-        case TinyCanvasTransform.ROT270:
+        case core.TinyCanvasTransform.ROT270:
           primitveTexInf = [new Offset(xe, ys), new Offset(xs, ys), new Offset(xe, ye), new Offset(xs, ye)];
           break;
-        case TinyCanvasTransform.MIRROR:
+        case core.TinyCanvasTransform.MIRROR:
           primitveTexInf = [new Offset(xe, ys), new Offset(xe, ye), new Offset(xs, ys), new Offset(xs, ye)];
           break;
-        case TinyCanvasTransform.MIRROR_ROT90:
+        case core.TinyCanvasTransform.MIRROR_ROT90:
           primitveTexInf = [new Offset(xs, ys), new Offset(xe, ys), new Offset(xs, ye), new Offset(xe, ye)];
           break;
-        case TinyCanvasTransform.MIRROR_ROT180:
+        case core.TinyCanvasTransform.MIRROR_ROT180:
           primitveTexInf = [new Offset(xs, ye), new Offset(xs, ys), new Offset(xe, ye), new Offset(xe, ys)];
           break;
-        case TinyCanvasTransform.MIRROR_ROT270:
+        case core.TinyCanvasTransform.MIRROR_ROT270:
           primitveTexInf = [new Offset(xe, ye), new Offset(xs, ye), new Offset(xe, ys), new Offset(xs, ys)];
           break;
         default:
