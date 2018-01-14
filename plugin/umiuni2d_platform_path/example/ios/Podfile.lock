@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - umiuni2d_platform_path (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `/Users/kyorohiro/devDart/flutter/bin/cache/artifacts/engine/ios`)
+  - umiuni2d_platform_path (from `/Users/kyorohiro/devDart2/umiuni2d_mini/plugin/umiuni2d_platform_path/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: /Users/kyorohiro/devDart/flutter/bin/cache/artifacts/engine/ios
+  umiuni2d_platform_path:
+    :path: /Users/kyorohiro/devDart2/umiuni2d_mini/plugin/umiuni2d_platform_path/ios
+
+SPEC CHECKSUMS:
+  Flutter: d674e78c937094a75ac71dd77e921e840bea3dbf
+  umiuni2d_platform_path: 4ffef51e0d7debc65eb4fee7844c48b3b3610fd6
+
+PODFILE CHECKSUM: cc70c01bca487bebd110b87397f017f3b76a89f1
+
+COCOAPODS: 1.3.1
