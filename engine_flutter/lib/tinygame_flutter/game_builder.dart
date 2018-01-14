@@ -22,17 +22,17 @@ class TinyGameBuilderForFlutter extends TinyGameBuilder {
   }
 
   @override
-  Future<TinyImage> loadImageBase(String path) async {
+  Future<TinyImage> loadImage(String path) async {
     return new TinyFlutterImage(await ResourceLoader.loadImage("${assetsPath}${path}"));
   }
 
   @override
-  Future<data.Uint8List> loadBytesBase(String path) async {
+  Future<data.Uint8List> loadBytes(String path) async {
     return await ResourceLoader.loadBytes("${assetsRoot}${path}");
   }
 
   @override
-  Future<String> loadStringBase(String path) async {
+  Future<String> loadString(String path) async {
     String a = await ResourceLoader.loadString("${assetsRoot}${path}");
     return a;
   }

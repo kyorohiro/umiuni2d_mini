@@ -7,6 +7,7 @@ dependencies:
   cupertino_icons: ^0.1.0
   umiuni2d:
     path: ../engine_core
-
+  umiuni2d_platform_path:
+    path: ../plugin/umiuni2d_platform_path
 flutter:
   uses-material-design: true

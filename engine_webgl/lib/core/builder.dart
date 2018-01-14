@@ -18,12 +18,12 @@ class TinyGameBuilderForWebgl extends TinyGameBuilder {
     return new TinyWebglStage(this, root, width:width.toDouble(), height:height.toDouble(), selectors:selectors, tickInterval:tickInterval, paintInterval:paintInterval);
   }
 
-  Future<TinyImage> loadImageBase(String path) async {
+  Future<TinyImage> loadImage(String path) async {
     ImageElement elm = await TinyWebglLoader.loadImage("${assetsPath}${path}");
     return new TinyWebglImage(elm);
   }
 
-  Future<Uint8List> loadBytesBase(String path) async {
+  Future<Uint8List> loadBytes(String path) async {
     Completer<Uint8List> c = new Completer();
     HttpRequest request = new HttpRequest();
     request.open("GET", "${assetsRoot}${path}");
@@ -39,8 +39,8 @@ class TinyGameBuilderForWebgl extends TinyGameBuilder {
     return c.future;
   }
 
-  Future<String> loadStringBase(String path) async {
-    Uint8List buffer = await loadBytesBase(path);
+  Future<String> loadString(String path) async {
+    Uint8List buffer = await loadBytes(path);
     return await conv.UTF8.decode(buffer, allowMalformed: true);
   }
 
