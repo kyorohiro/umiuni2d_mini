@@ -39,6 +39,9 @@ class TinyFlutterStage extends RenderConstrainedBox implements core.Stage {
   double get paddingLeft => sky.window.padding.left / sky.window.devicePixelRatio;
 
   @override
+  double get deviceRadio => sky.window.devicePixelRatio;
+
+  @override
   bool animeIsStart = false;
 
   @override
@@ -200,15 +203,16 @@ class TinyFlutterStage extends RenderConstrainedBox implements core.Stage {
     size = constraints.biggest;
     startable = true;
   }
-/*
+
   @override
-  bool hitTest(HitTestResult result, {Point position}) {
+  bool hitTest(HitTestResult result, {Offset position}) {
     result.add(new BoxHitTestEntry(this, position));
     return true;
   }
-*/
-@override
-bool hitTestSelf(sky.Offset position) => true;
+
+  @override
+  bool hitTestSelf(sky.Offset position) => true;
+
   @override
   void paint(PaintingContext context, Offset offset) {
     super.paint(context, offset);

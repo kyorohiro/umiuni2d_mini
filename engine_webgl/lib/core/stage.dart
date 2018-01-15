@@ -12,6 +12,7 @@ class TinyWebglStage extends core.Stage {
   double get paddingRight => 0.0;
   double get paddingLeft => 0.0;
 
+  double get deviceRadio => 1.0;
   int lastUpdateTime = 0;
   int tappedEventTime = 0;
   bool animeIsStart = false;

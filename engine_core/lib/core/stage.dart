@@ -11,6 +11,7 @@ abstract class Stage {
   double get paddingBottom;
   double get paddingRight;
   double get paddingLeft;
+  double get deviceRadio;
 
 
   DisplayObject get root;
