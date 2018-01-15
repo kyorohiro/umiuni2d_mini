@@ -13,6 +13,7 @@ class TinyFlutterStage extends RenderConstrainedBox implements core.Stage {
     init();
   }
 
+
   @override
   double get x => paintBounds.left;
 
@@ -26,16 +27,16 @@ class TinyFlutterStage extends RenderConstrainedBox implements core.Stage {
   double get h => paintBounds.height;
 
   @override
-  double get paddingTop => sky.window.padding.top;
+  double get paddingTop => sky.window.padding.top / sky.window.devicePixelRatio;
 
   @override
-  double get paddingBottom => sky.window.padding.bottom;
+  double get paddingBottom => sky.window.padding.bottom / sky.window.devicePixelRatio;
 
   @override
-  double get paddingRight => sky.window.padding.right;
+  double get paddingRight => sky.window.padding.right / sky.window.devicePixelRatio;
 
   @override
-  double get paddingLeft => sky.window.padding.left;
+  double get paddingLeft => sky.window.padding.left / sky.window.devicePixelRatio;
 
   @override
   bool animeIsStart = false;
