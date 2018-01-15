@@ -8,18 +8,18 @@ class GameRoot extends DisplayObject {
   double radio = 1.0;
   double l = 0.0;
   double t = 0.0;
-  Color bkcolor;
+  Color backgroundColor;
   bool isClipRect;
 
-  GameRoot(this.w, this.h, {this.bkcolor, this.isClipRect:true}) {
-    if (bkcolor == null) {
-      bkcolor = new Color.argb(0xff, 0xee, 0xee, 0xff);
+  GameRoot(this.w, this.h, {this.backgroundColor, this.isClipRect: true}) {
+    if (backgroundColor == null) {
+      backgroundColor = new Color.argb(0xff, 0xee, 0xee, 0xff);
     }
   }
 
   void updatePosition(Stage stage, int timeStamp) {
-    ratioW = (stage.w - (stage.paddingLeft+stage.paddingRight)) / w;
-    ratioH = (stage.h - (stage.paddingTop+stage.paddingBottom)) / h;
+    ratioW = (stage.w - (stage.paddingLeft + stage.paddingRight)) / w;
+    ratioH = (stage.h - (stage.paddingTop + stage.paddingBottom)) / h;
     radio = (ratioW < ratioH ? ratioW : ratioH);
     t = stage.paddingTop;
     l = (stage.w - (w * radio)) / 2 + stage.paddingLeft;
@@ -28,11 +28,12 @@ class GameRoot extends DisplayObject {
     mat.scale(radio, radio, 1.0);
   }
 
-  bool touch(Stage stage, DisplayObject parent, int id, StagePointerType type, double x, double y) {
+  bool touch(Stage stage, DisplayObject parent, int id, StagePointerType type,
+      double x, double y) {
     //  stage.pushMulMatrix(mat);
-      return super.touch(stage, parent, id, type, x, y);
-      //stage.popMatrix();
-    }
+    return super.touch(stage, parent, id, type, x, y);
+    //stage.popMatrix();
+  }
 
   void onTick(Stage stage, int timeStamp) {
     updatePosition(stage, timeStamp);
@@ -41,11 +42,11 @@ class GameRoot extends DisplayObject {
   void paint(Stage stage, Canvas canvas) {
     Rect rect = new Rect(0.0, 0.0, w, h);
 //    canvas.pushMulMatrix(mat);
-    if(isClipRect == true) {
+    if (isClipRect == true) {
       canvas.pushClipRect(stage, rect);
     }
     super.paint(stage, canvas);
-    if(isClipRect == true) {
+    if (isClipRect == true) {
       canvas.popClipRect(stage);
     }
 //    canvas.popMatrix();
@@ -54,7 +55,7 @@ class GameRoot extends DisplayObject {
   void onPaint(Stage stage, Canvas canvas) {
     Rect rect = new Rect(0.0, 0.0, w, h);
     Paint paint = new Paint();
-    paint.color = bkcolor;
+    paint.color = backgroundColor;
     canvas.drawRect(stage, rect, paint);
   }
 }

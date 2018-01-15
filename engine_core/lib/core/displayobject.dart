@@ -5,18 +5,12 @@ class DisplayObject {
   List<DisplayObject> child = [];
   Matrix4 mat = new Matrix4.identity();
 
-  //
-  // remove start
-  //
-  double get x => this.mat.storage[12];
-  double get y => this.mat.storage[13];
-  double get z => this.mat.storage[14];
-  double get sx => (new Vector3(mat.storage[0], mat.storage[4], mat.storage[8])).length;
-  double get sy => (new Vector3(mat.storage[1], mat.storage[5], mat.storage[9])).length;
-  double get sz => (new Vector3(mat.storage[2], mat.storage[6], mat.storage[10])).length;
-  //
-  // remove end
-  //
+  //double get x => this.mat.storage[12];
+  //double get y => this.mat.storage[13];
+  //double get z => this.mat.storage[14];
+  //double get sx => (new Vector3(mat.storage[0], mat.storage[4], mat.storage[8])).length;
+  //double get sy => (new Vector3(mat.storage[1], mat.storage[5], mat.storage[9])).length;
+  //double get sz => (new Vector3(mat.storage[2], mat.storage[6], mat.storage[10])).length;
 
   DisplayObject({this.child: null}) {
     if (child == null) {
@@ -73,9 +67,7 @@ class DisplayObject {
     }
   }
 
-  void onTick(Stage stage, int timeStamp) {
-//    print("--------A");
-  }
+  void onTick(Stage stage, int timeStamp) {}
 
   void tick(Stage stage, DisplayObject parent, int timeStamp) {
     attachCheck(stage, parent);
@@ -85,12 +77,9 @@ class DisplayObject {
     }
   }
 
-  void onPaint(Stage stage, Canvas canvas) {
-//    print("--------B");
-  }
+  void onPaint(Stage stage, Canvas canvas) {}
 
   void paint(Stage stage, Canvas canvas) {
-    //attachCheck();
     onPaint(stage, canvas);
     for (DisplayObject d in child) {
       canvas.pushMulMatrix(d.mat);
@@ -119,16 +108,11 @@ class DisplayObject {
     }
   }
 
-  bool onTouch(Stage stage, int id, StagePointerType type, double globalX, globalY) {
-    return false;
-  }
+  bool onTouch(Stage stage, int id, StagePointerType type, double globalX, globalY) => false;
 
-  void onTouchStart(Stage stage, int id, StagePointerType type, double x, double y) {
-  }
+  void onTouchStart(Stage stage, int id, StagePointerType type, double x, double y) {}
 
-  void onTouchEnd(Stage stage, int id, StagePointerType type, double x, double y) {
-    ;
-  }
+  void onTouchEnd(Stage stage, int id, StagePointerType type, double x, double y) {}
 
   void onUnattach() {}
 
@@ -151,7 +135,5 @@ class DisplayObject {
 
   //
   //
-  bool checkFocus(double localX, double localY) {
-    return false;
-  }
+  bool checkFocus(double localX, double localY) => false;
 }
