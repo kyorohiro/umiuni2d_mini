@@ -18,10 +18,10 @@ import 'package:umiuni2d/core.dart' as core;
 
 //
 //
-part 'tinygame_flutter/stage.dart';
-part 'tinygame_flutter/ncanvas.dart';
-part 'tinygame_flutter/game_builder.dart';
-part 'tinygame_flutter/loader.dart';
+part 'core/stage.dart';
+part 'core/ncanvas.dart';
+part 'core/game_builder.dart';
+part 'core/loader.dart';
 //
 
 class GameWidget extends SingleChildRenderObjectWidget {

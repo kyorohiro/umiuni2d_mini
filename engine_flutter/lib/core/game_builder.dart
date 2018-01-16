@@ -47,4 +47,10 @@ class TinyGameBuilderForFlutter extends core.GameBuilder {
     return sky.window.devicePixelRatio;
   }
 
+  //
+  //
+  @override
+  Future<core.File> loadFile(String name) async {return null;}
+  @override
+  Future<List<String>> getFiles() async {return <String>[];}
 }

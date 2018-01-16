@@ -19,6 +19,7 @@ part 'core/context.dart';
 part 'core/builder.dart';
 
 part 'util/canvas_text.dart';
+part 'io/file.dart';
 
 class GameWidget {
   core.Stage _stage;

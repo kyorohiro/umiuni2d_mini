@@ -16,6 +16,12 @@ abstract class GameBuilder {
   Future<Image> loadImage(String path);
 
   Future<Uint8List> loadBytes(String path);
+
+  //
+  //
+  Future<File> loadFile(String name);
+
+  Future<List<String>> getFiles();
 }
 
 abstract class GameBuilderWithCaches {

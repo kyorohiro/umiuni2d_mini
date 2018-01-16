@@ -44,6 +44,23 @@ class TinyGameBuilderForWebgl extends core.GameBuilder {
     return await conv.UTF8.decode(buffer, allowMalformed: true);
   }
 
+
+  Future<String> getLocale() async {
+    return window.navigator.language;
+  }
+
+  Future<double> getDisplayDensity() async {
+    return window.devicePixelRatio;
+  }
+
+  //
+  //
+  @override
+  Future<core.File> loadFile(String name) async {
+    return null;
+  }
+
+  @override
   Future<List<String>> getFiles() async {
     FileSystem e = await window.requestFileSystem(1024, persistent: true);
     List<Entry> files = await e.root.createReader().readEntries();
@@ -55,14 +72,4 @@ class TinyGameBuilderForWebgl extends core.GameBuilder {
     }
     return ret;
   }
-
-  Future<String> getLocale() async {
-    return window.navigator.language;
-  }
-
-  Future<double> getDisplayDensity() async {
-    return window.devicePixelRatio;
-  }
-
-
 }

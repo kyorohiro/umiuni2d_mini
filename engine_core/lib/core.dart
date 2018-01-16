@@ -21,3 +21,6 @@ part 'core/stage_base.dart';
 part 'core/displayobject_expansion.dart';
 part 'core/displayobject_expansion_item.dart';
 part 'core/builder.dart';
+
+part 'io/file.dart';
+
