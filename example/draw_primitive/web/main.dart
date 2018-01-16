@@ -9,6 +9,6 @@ void main() {
   Stage stage = builder.createStage(root: root);
   (stage as TinyWebglStage).isTMode = true;
   stage.start();
-  PrimitiveTest test = new PrimitiveTest(builder);
+  PrimitiveTest test = new PrimitiveTest();
   root.addChild(test);
 }

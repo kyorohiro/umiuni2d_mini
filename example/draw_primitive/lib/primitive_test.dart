@@ -3,14 +3,14 @@ import 'package:umiuni2d/core.dart';
 import 'package:vector_math/vector_math_64.dart';
 
 class PrimitiveTest extends DisplayObject {
-  GameBuilder builder;
   Image image = null;
-  PrimitiveTest(this.builder) {
-    builder.loadImage("assets/test.jpg").then((Image i) {
-      image = i;
+  PrimitiveTest();
+
+  void onInit(Stage stage) {
+    stage.builder.loadImage("assets/test.jpg").then((Image i) {
+    image = i;
     });
   }
-
   void onPaint(Stage stage, Canvas canvas) {
     {
       Paint p = new Paint();
