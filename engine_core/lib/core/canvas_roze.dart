@@ -362,6 +362,7 @@ abstract class CanvasRoze extends Canvas {
 
 
   Matrix4 cacheMatrix = new Matrix4.identity();
+
   Matrix4 calcMat() {
     cacheMatrix.setIdentity();
     //cacheMatrix =

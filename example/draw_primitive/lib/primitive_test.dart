@@ -12,9 +12,6 @@ class PrimitiveTest extends DisplayObject {
   }
 
   void onPaint(Stage stage, Canvas canvas) {
-    if(image == null) {
-      return;
-    }
     {
       Paint p = new Paint();
       // canvas.clipRect(null, new TinyRect(50.0, 100.0, 150.0, 280.0));
@@ -43,7 +40,7 @@ class PrimitiveTest extends DisplayObject {
       canvas.drawOval(null, new Rect(150.0, 150.0, 100.0, 100.0), p);
     }
 
-    {
+    if(image != null) {
       Paint p = new Paint();
       p.color = new Color.argb(0x50, 0xff, 0xff, 0xff);
       //
