@@ -29,7 +29,8 @@ class GameWidget {
     core.DisplayObject root:null,
     double width:400.0,
     double height:300.0,
-    String assetsRoot:""}) {
+    String assetsRoot:"",
+    String selectors: null}) {
     if(builder == null) {
       builder = new TinyGameBuilderForWebgl(assetsRoot: assetsRoot);
     }
@@ -37,6 +38,7 @@ class GameWidget {
       root = new core.GameRoot(width, height);
     }
     this._builder = builder;
+    builder.selectors = selectors;
     this._stage = builder.createStage(root: root);
     (this._stage as TinyWebglStage).isTMode = true;
   }
