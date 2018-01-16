@@ -13,6 +13,7 @@ import 'package:vector_math/vector_math_64.dart';
 import 'package:umiuni2d/core.dart' as core;
 //import 'package:sky_services/media/media.mojom.dart';
 //import 'package:mojo/core.dart';
+import 'package:umiuni2d_platform_path/umiuni2d_platform_path.dart' as ppath;
 
 
 
@@ -20,9 +21,12 @@ import 'package:umiuni2d/core.dart' as core;
 //
 part 'core/stage.dart';
 part 'core/ncanvas.dart';
-part 'core/game_builder.dart';
+part 'core/builder.dart';
 part 'core/loader.dart';
 //
+//
+part 'io/file.dart';
+
 
 class GameWidget extends SingleChildRenderObjectWidget {
   core.Stage _stage;

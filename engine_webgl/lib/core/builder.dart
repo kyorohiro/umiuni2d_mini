@@ -54,10 +54,12 @@ class TinyGameBuilderForWebgl extends core.GameBuilder {
   }
 
   //
+  // File
   //
+
   @override
   Future<core.File> loadFile(String name) async {
-    return null;
+    return new TinyWebglFile(name);
   }
 
   @override
