@@ -18,6 +18,39 @@ part 'core/canvas.dart';
 part 'core/context.dart';
 part 'core/builder.dart';
 
+class GameWidget {
+  core.Stage _stage;
+  core.Stage get stage => _stage;
+  TinyGameBuilderForWebgl _builder = null;
+  TinyGameBuilderForWebgl get builder => _builder;
+
+  GameWidget({
+    TinyGameBuilderForWebgl builder:null,
+    core.DisplayObject root:null,
+    double width:400.0,
+    double height:300.0,
+    String assetsRoot:""}) {
+    if(builder == null) {
+      builder = new TinyGameBuilderForWebgl(assetsRoot: assetsRoot);
+    }
+    if(root == null) {
+      root = new core.GameRoot(width, height);
+    }
+    this._builder = builder;
+    this._stage = builder.createStage(root: root);
+    (this._stage as TinyWebglStage).isTMode = true;
+  }
+
+  void start() {
+    stage.start();
+  }
+
+  void stop() {
+    stage.stop();
+  }
+}
+
+
 class ImageElementResizer {
   static Future<html.ImageElement> resize(html.ImageElement imageTmp, {int nextHeight: 300}) async {
     html.ImageElement returnValue = new html.ImageElement();

@@ -26,7 +26,8 @@ class TinyWebglStage extends core.Stage {
   num prevTime = 0;
 
   core.StageBase stageBase;
-  TinyWebglStage(this._builder, core.DisplayObject root, {double width: 600.0, double height: 400.0, String selectors: null, this.tickInterval: 15, this.paintInterval: 40}) {
+  TinyWebglStage(this._builder, core.DisplayObject root,
+      {double width: 400.0, double height: 300.0, String selectors: null, this.tickInterval: 15, this.paintInterval: 40}) {
     stageBase = new core.StageBase(this);
     glContext = new TinyWebglContext(width: width, height: height, selectors: selectors);
     this.root = root;
