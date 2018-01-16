@@ -7,8 +7,6 @@ abstract class GameBuilder {
 
   Stage createStage({DisplayObject root});
 
-  Future<String> getLocale();
-
   Future<double> getDisplayDensity();
 
   Future<String> loadString(String path);
@@ -19,6 +17,8 @@ abstract class GameBuilder {
 
   //
   //
+  Future<String> getLocale();
+
   Future<File> loadFile(String name);
 
   Future<List<String>> getFiles();
