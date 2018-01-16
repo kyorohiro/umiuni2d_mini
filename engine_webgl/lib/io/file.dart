@@ -1,6 +1,6 @@
-part of tinygame_webgl;
+part of io_webgl;
 
-class TinyWebglFile extends core.File {
+class TinyWebglFile extends io.File {
   String _filename;
   String get filename => _filename;
   FileEntry _fileEntry = null;

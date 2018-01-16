@@ -8,8 +8,8 @@ class CharaGameRoot  extends umiuni2d.DisplayObject {
   umiuni2d.GameBuilder _builder;
   umiuni2d.Sprite chara;
   umiuni2d.Stage _stage = null;
-  CharaGameRoot() {
-  }
+
+  CharaGameRoot();
 
   void onInit(umiuni2d.Stage stage) {
     _stage = stage;

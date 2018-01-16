@@ -1,6 +1,6 @@
-part of tinygame_flutter;
+part of io_flutter;
 
-class TinyFlutterFile extends core.File {
+class TinyFlutterFile extends io.File {
   File f;
   TinyFlutterFile(this.f) {
     ;

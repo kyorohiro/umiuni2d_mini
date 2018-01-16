@@ -18,10 +18,6 @@ abstract class GameBuilder {
   //
   //
   Future<String> getLocale();
-
-  Future<File> loadFile(String name);
-
-  Future<List<String>> getFiles();
 }
 
 abstract class GameBuilderWithCaches {

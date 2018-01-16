@@ -1,4 +1,5 @@
-part of core;
+part of io;
+
 
 abstract class File {
   Future<int> write(List<int> buffer, int offset);
