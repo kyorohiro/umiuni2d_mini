@@ -11,8 +11,7 @@ import 'package:example/primitive_test.dart';
 void main() {
   TinyGameBuilderForWebgl builder = new TinyGameBuilderForWebgl();
   GameWidget game = new GameWidget();
-  PrimitiveTest test = new PrimitiveTest();
-  game.stage.root.addChild(test);
+  game.stage.root.addChild(new PrimitiveTest());
   game.start();
 }
 
