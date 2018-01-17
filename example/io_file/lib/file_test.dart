@@ -12,6 +12,8 @@ class PrimitiveTest extends DisplayObject {
   void onInit(Stage stage) {
     new Future(() async {
       FileSystem fs = await stage.builder.getFileSystem();
+      await fs.checkPermission();
+
       String homeDir = await fs.getHomeDirectory();
       print("#HOME DIR ${homeDir}");
       for(String f in await fs.ls(homeDir).toList()) {
