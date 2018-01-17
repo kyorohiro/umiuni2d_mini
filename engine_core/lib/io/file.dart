@@ -7,3 +7,12 @@ abstract class File {
   Future<int> getLength();
   Future<int> truncate(int fileSize);
 }
+
+abstract class FileSystem {
+  Future<bool> checkPermission();
+  Future<FileSystem> mkdir(String path);
+  Future<FileSystem> rmDir(String path);
+  Future<String> ls(String path);
+  Future<File> open(String path);
+  Future<String> getHomeDirectory();
+}
