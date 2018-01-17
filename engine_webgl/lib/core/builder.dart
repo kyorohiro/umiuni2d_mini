@@ -53,4 +53,7 @@ class TinyGameBuilderForWebgl extends core.GameBuilder {
     return window.devicePixelRatio;
   }
 
+  Future<io.FileSystem> getFileSystem() async {
+    return null;
+  }
 }

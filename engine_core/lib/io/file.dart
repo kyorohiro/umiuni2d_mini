@@ -12,7 +12,7 @@ abstract class FileSystem {
   Future<bool> checkPermission();
   Future<FileSystem> mkdir(String path);
   Future<FileSystem> rmDir(String path);
-  Future<String> ls(String path);
+  Future<List<String>> ls(String path);
   Future<File> open(String path);
   Future<String> getHomeDirectory();
 }

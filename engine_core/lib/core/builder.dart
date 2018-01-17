@@ -8,6 +8,7 @@ abstract class GameBuilder {
   Future<Uint8List> loadBytes(String path);
   //
   Future<String> getLocale();
+  Future<io.FileSystem> getFileSystem();
 }
 
 abstract class GameBuilderWithCaches {

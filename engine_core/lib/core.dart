@@ -4,7 +4,8 @@ import 'package:vector_math/vector_math_64.dart';
 import 'util.dart';
 import 'dart:typed_data';
 import 'dart:math' as math;
-
+//
+import 'io.dart' as io;
 part 'core/canvas.dart';
 part 'core/canvas_roze.dart';
 part 'core/color.dart';
@@ -23,3 +24,10 @@ part 'core/displayobject_expansion_item.dart';
 part 'core/builder.dart';
 
 
+abstract class Platform {
+  Future<double> getDisplayDensity();
+  Future<String> loadString(String path);
+  Future<Image> loadImage(String path);
+  Future<Uint8List> loadBytes(String path);
+  Future<String> getLocale();
+}

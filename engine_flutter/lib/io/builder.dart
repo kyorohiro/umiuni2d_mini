@@ -9,7 +9,7 @@ class IOBuilderForFlutter extends io.IOBuilder {
 
   Future initFile() async {
     if (rootPath == null) {
-      ppath.Umiuni2dPlatformPath p = new ppath.Umiuni2dPlatformPath();
+      path.Umiuni2dPlatformPath p = new path.Umiuni2dPlatformPath();
       String rootPathSrc = await p.getApplicationDirectory();
       rootPath = new Directory(rootPathSrc);
     }
