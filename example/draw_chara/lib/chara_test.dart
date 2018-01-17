@@ -4,7 +4,7 @@ import 'dart:async';
 import 'dart:math' as math;
 import 'package:umiuni2d/core.dart' as umiuni2d;
 
-class CharaGameRoot  extends umiuni2d.DisplayObject {
+class CharaGameRoot extends umiuni2d.DisplayObject {
   umiuni2d.GameBuilder _builder;
   umiuni2d.Sprite chara;
   umiuni2d.Stage _stage = null;

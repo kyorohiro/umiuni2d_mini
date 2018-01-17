@@ -8,9 +8,10 @@ class PrimitiveTest extends DisplayObject {
 
   void onInit(Stage stage) {
     stage.builder.loadImage("assets/test.jpg").then((Image i) {
-    image = i;
+      image = i;
     });
   }
+
   void onPaint(Stage stage, Canvas canvas) {
     {
       Paint p = new Paint();
@@ -18,8 +19,10 @@ class PrimitiveTest extends DisplayObject {
       canvas.drawRect(null, new Rect(50.0, 50.0, 100.0, 100.0), p);
     }
 
-    canvas.pushMulMatrix(new Matrix4.zero()..setIdentity()..rotateZ(math.PI / 8.0)); //math.PI/100.0));
-        {
+    canvas.pushMulMatrix(new Matrix4.zero()
+      ..setIdentity()
+      ..rotateZ(math.PI / 8.0)); //math.PI/100.0));
+    {
       Paint p = new Paint();
       p.color = new Color.argb(0xff, 0xff, 0xff, 0x00);
 
@@ -40,7 +43,7 @@ class PrimitiveTest extends DisplayObject {
       canvas.drawOval(null, new Rect(150.0, 150.0, 100.0, 100.0), p);
     }
 
-    if(image != null) {
+    if (image != null) {
       Paint p = new Paint();
       p.color = new Color.argb(0x50, 0xff, 0xff, 0xff);
       //
@@ -49,8 +52,7 @@ class PrimitiveTest extends DisplayObject {
           null,
           image,
           src,
-          new Rect(
-              250.0, 25.0, image.w.toDouble() / 2, image.h.toDouble() / 2),
+          new Rect(250.0, 25.0, image.w.toDouble() / 2, image.h.toDouble() / 2),
           p);
     }
 
