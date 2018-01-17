@@ -11,15 +11,17 @@ class TinyWebglCanvas extends core.CanvasRoze {
   //-2.0 / glContext.height
 
   TinyWebglCanvas(TinyWebglContext c, {int numOfCircleElm:16}):super(numOfCircleElm:numOfCircleElm) {
+    print("#TinyWebglCanvas ${c.GL}");
     GL = c.GL;
     glContext = c;
-    //this.numOfCircleElm = numOfCircleElm;
-    //init();
-    //clear();
+    this.numOfCircleElm = numOfCircleElm;
+    init();
+    clear();
   }
 
   @override
   void init() {
+    print("#INIT");
     maxVertexTextureImageUnits = GL.getParameter(RenderingContext.MAX_VERTEX_TEXTURE_IMAGE_UNITS);
     print("#[A] MAX_VERTEX_TEXTURE_IMAGE_UNITS # ${GL.getParameter(RenderingContext.MAX_VERTEX_TEXTURE_IMAGE_UNITS)}");
     print("#[B] ALIASED_POINT_SIZE_RANGE       # ${GL.getParameter(RenderingContext.ALIASED_POINT_SIZE_RANGE)}");

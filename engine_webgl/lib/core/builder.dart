@@ -54,6 +54,6 @@ class TinyGameBuilderForWebgl extends core.GameBuilder {
   }
 
   Future<io.FileSystem> getFileSystem() async {
-    return null;
+    return new io.WebglFileSystem();
   }
 }

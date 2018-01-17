@@ -26,8 +26,8 @@ abstract class CanvasRoze extends Canvas {
   int maxVertexTextureImageUnits = 3;
   CanvasRoze({int numOfCircleElm:16}) {
     this.numOfCircleElm = numOfCircleElm;
-    init();
-    clear();
+    //1init();
+    //clear();
   }
 
   void init() {

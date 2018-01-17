@@ -12,3 +12,4 @@ import 'dart:convert' as conv;
 
 part 'io/file.dart';
 part 'io/builder.dart';
+part 'io/filesystem.dart';

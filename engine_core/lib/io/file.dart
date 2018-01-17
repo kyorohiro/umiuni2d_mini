@@ -9,7 +9,7 @@ abstract class File {
 }
 
 abstract class FileSystem {
-  Future<bool> checkPermission();
+  Future<FileSystem> checkPermission();
   Future<FileSystem> mkdir(String path);
   Future<FileSystem> rm(String path,{bool recursive: false});
   Stream<String> ls(String path);
