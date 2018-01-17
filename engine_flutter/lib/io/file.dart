@@ -13,7 +13,7 @@ class TinyFlutterFile extends io.File {
   }
 
   @override
-  Future<int> write(List<int> buffer, int offset) async {
+  Future<int> writeAsBytes(List<int> buffer, int offset) async {
     await init();
     RandomAccessFile af = await f.open(mode: FileMode.WRITE);
     await af.setPosition(offset);
@@ -23,7 +23,7 @@ class TinyFlutterFile extends io.File {
   }
 
   @override
-  Future<List<int>> read(int offset, int length) async {
+  Future<List<int>> readAsBytes(int offset, int length) async {
     await init();
     RandomAccessFile af = await f.open();
     await af.setPosition(offset);

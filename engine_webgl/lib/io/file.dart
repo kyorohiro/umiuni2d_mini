@@ -27,7 +27,7 @@ class TinyWebglFile extends io.File {
     return ret.future;
   }
 
-  Future<int> write(List<int> buffer, int offset) async {
+  Future<int> writeAsBytes(List<int> buffer, int offset) async {
     if (!(buffer is Uint8List)) {
       buffer = new Uint8List.fromList(buffer);
     }
@@ -57,7 +57,7 @@ class TinyWebglFile extends io.File {
     return completer.future;
   }
 
-  Future<List<int>> read(int offset, int length) async {
+  Future<List<int>> readAsBytes(int offset, int length) async {
     Completer<List<int>> c_ompleter = new Completer();
     await init();
     FileReader reader = new FileReader();
