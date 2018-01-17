@@ -11,7 +11,7 @@ abstract class File {
 abstract class FileSystem {
   Future<bool> checkPermission();
   Future<FileSystem> mkdir(String path);
-  Future<FileSystem> rmDir(String path);
+  Future<FileSystem> rmDir(String path,{bool recursive: false});
   Stream<String> ls(String path);
   Future<File> open(String path);
   Future<String> getHomeDirectory();

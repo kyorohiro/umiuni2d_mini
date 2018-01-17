@@ -16,16 +16,26 @@ class FlutterFileSystem extends io.FileSystem {
     return this;
   }
 
-  Future<io.FileSystem> rmDir(String path) async {
+  Future<io.FileSystem> rmDir(String path,{bool recursive: false}) async {
+    path = await toAbsoltePath(path);
+    dio.Directory d = new dio.Directory(path);
+    if(await d.exists()) {
+      d.delete(recursive: recursive);
+    }
     return this;
   }
 
-  Stream<String> ls(String path) async* {
+  Future<String> toAbsoltePath(String path) async {
     if(path == "" || path == "/" || path == "./") {
       path = await getHomeDirectory();
     } else if(!path.startsWith("/") && !path.contains("://")) {
       path = await getHomeDirectory() + path;
     }
+    return path;
+  }
+
+  Stream<String> ls(String path) async* {
+    path = await toAbsoltePath(path);
     dio.Directory d = new dio.Directory(path);
     if(false == await d.exists()){
       // not found
