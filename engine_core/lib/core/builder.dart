@@ -1,26 +1,19 @@
 part of core;
 
 abstract class GameBuilder {
-  Map<String, Image> cach = {};
-  Map<String, String> cachString = {};
-  Map<String, Uint8List> cachBytes = {};
-
   Stage createStage({DisplayObject root});
-
   Future<double> getDisplayDensity();
-
   Future<String> loadString(String path);
-
   Future<Image> loadImage(String path);
-
   Future<Uint8List> loadBytes(String path);
-
-  //
   //
   Future<String> getLocale();
 }
 
 abstract class GameBuilderWithCaches {
+  Map<String, Image> cach = {};
+  Map<String, String> cachString = {};
+  Map<String, Uint8List> cachBytes = {};
   GameBuilder _base;
   GameBuilderWithCaches(GameBuilder base) {
     this._base = base;
