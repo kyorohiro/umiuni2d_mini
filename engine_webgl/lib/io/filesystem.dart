@@ -27,6 +27,7 @@ class WebglFileSystem extends io.FileSystem {
   }
 
   Stream<String> ls(String path) async* {
+    FileSystem fs = await window.requestFileSystem(1024, persistent: true);
   }
 
   Future<io.File> open(String path) async {
@@ -34,6 +35,7 @@ class WebglFileSystem extends io.FileSystem {
   }
 
   Future<String> getHomeDirectory() async {
-    return "";
+    FileSystem fs = await window.requestFileSystem(1024, persistent: true);
+    return fs.root.fullPath;
   }
 }
