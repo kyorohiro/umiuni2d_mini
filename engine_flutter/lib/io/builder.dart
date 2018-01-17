@@ -5,20 +5,20 @@ class IOBuilderForFlutter extends io.IOBuilder {
   //
   // File
   //
-  Directory rootPath;
+  dio.Directory rootPath;
 
   Future initFile() async {
     if (rootPath == null) {
       path.Umiuni2dPlatformPath p = new path.Umiuni2dPlatformPath();
       String rootPathSrc = await p.getApplicationDirectory();
-      rootPath = new Directory(rootPathSrc);
+      rootPath = new dio.Directory(rootPathSrc);
     }
   }
 
   @override
   Future<io.File> loadFile(String name) async  {
     await initFile();
-    File f = new File("${rootPath.path}/${name}");
+    dio.File f = new dio.File("${rootPath.path}/${name}");
     return new TinyFlutterFile(f);
   }
 
@@ -26,7 +26,7 @@ class IOBuilderForFlutter extends io.IOBuilder {
   Future<List<String>> getFiles() async {
     await initFile();
     List<String> ret = [];
-    await for (FileSystemEntity fse in rootPath.list()) {
+    await for (dio.FileSystemEntity fse in rootPath.list()) {
       ret.add(fse.path.split("/").last);
     }
     return ret;

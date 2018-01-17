@@ -13,7 +13,9 @@ class PrimitiveTest extends DisplayObject {
       FileSystem fs = await stage.builder.getFileSystem();
       String homeDir = await fs.getHomeDirectory();
       print("#HOME DIR ${homeDir}");
-
+      for(String f in await fs.ls(homeDir+"../").toList()) {
+        print("#LS ${f}");
+      }
     });
   }
 

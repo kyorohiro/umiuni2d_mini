@@ -17,8 +17,21 @@ class FlutterFileSystem extends io.FileSystem {
     return this;
   }
 
-  Future<List<String>> ls(String path) async {
-    return <String>[];
+  Stream<String> ls(String path) async* {
+    if(path == "" || path == "/" || path == "./") {
+      path = await getHomeDirectory();
+    } else if(!path.startsWith("/") && !path.contains("://")) {
+      path = await getHomeDirectory() + path;
+    }
+    dio.Directory d = new dio.Directory(path);
+    if(false == await d.exists()){
+      // not found
+      throw "not found "+ path;
+    }
+    await for(dio.FileSystemEntity f in d.list()) {
+        bool isDir = await dio.FileSystemEntity.isDirectory(f.path);
+        yield f.path + (isDir?"/":"");
+    }
   }
 
   Future<io.File> open(String path) async {
@@ -26,7 +39,7 @@ class FlutterFileSystem extends io.FileSystem {
   }
 
   Future<String> getHomeDirectory() async {
-    return _path.getApplicationDirectory();
+    return await _path.getApplicationDirectory() + "/";
   }
 
 }

@@ -1,7 +1,7 @@
 part of io_flutter;
 
 class TinyFlutterFile extends io.File {
-  File f;
+  dio.File f;
   TinyFlutterFile(this.f) {
     ;
   }
@@ -15,7 +15,7 @@ class TinyFlutterFile extends io.File {
   @override
   Future<int> writeAsBytes(List<int> buffer, int offset) async {
     await init();
-    RandomAccessFile af = await f.open(mode: FileMode.WRITE);
+    dio.RandomAccessFile af = await f.open(mode: dio.FileMode.WRITE);
     await af.setPosition(offset);
     await af.writeFrom(buffer);
     await af.close();
@@ -25,7 +25,7 @@ class TinyFlutterFile extends io.File {
   @override
   Future<List<int>> readAsBytes(int offset, int length) async {
     await init();
-    RandomAccessFile af = await f.open();
+    dio.RandomAccessFile af = await f.open();
     await af.setPosition(offset);
     List<int> ret = await af.read(length);
     await af.close();
@@ -45,7 +45,7 @@ class TinyFlutterFile extends io.File {
     if(fileSize >= s) {
       return s;
     }
-    RandomAccessFile af = await f.open();
+    dio.RandomAccessFile af = await f.open();
     await af.truncate(fileSize);
     int ret = await getLength();
     await af.close();
