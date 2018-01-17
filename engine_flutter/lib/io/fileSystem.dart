@@ -21,11 +21,17 @@ class FlutterFileSystem extends io.FileSystem {
     return this;
   }
 
-  Future<io.FileSystem> rmDir(String path,{bool recursive: false}) async {
+  Future<io.FileSystem> rm(String path,{bool recursive: false}) async {
     path = await toAbsoltePath(path);
-    dio.Directory d = new dio.Directory(path);
-    if(await d.exists()) {
+    bool isFile = await dio.FileSystemEntity.isFile(path);
+    if(isFile) {
+      dio.File d = new dio.File(path);
       d.delete(recursive: recursive);
+    } else {
+      dio.Directory d = new dio.Directory(path);
+      if (await d.exists()) {
+        d.delete(recursive: recursive);
+      }
     }
     return this;
   }
@@ -41,14 +47,19 @@ class FlutterFileSystem extends io.FileSystem {
 
   Stream<String> ls(String path) async* {
     path = await toAbsoltePath(path);
-    dio.Directory d = new dio.Directory(path);
-    if(false == await d.exists()){
-      // not found
-      throw "not found "+ path;
-    }
-    await for(dio.FileSystemEntity f in d.list()) {
+    bool isFile = await dio.FileSystemEntity.isFile(path);
+    if(isFile) {
+      yield path;
+    } else {
+      dio.Directory d = new dio.Directory(path);
+      if (false == await d.exists()) {
+        // not found
+        throw "not found " + path;
+      }
+      await for (dio.FileSystemEntity f in d.list()) {
         bool isDir = await dio.FileSystemEntity.isDirectory(f.path);
-        yield f.path + (isDir?"/":"");
+        yield f.path + (isDir ? "/" : "");
+      }
     }
   }
 
