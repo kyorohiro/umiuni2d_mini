@@ -29,15 +29,15 @@ class PrimitiveTest extends DisplayObject {
       canvas.drawRect(null, new Rect(50.0, 50.0, 100.0, 100.0), p);
 
       p.color = new Color.argb(0xff, 0x00, 0xff, 0xff);
-      p.style = TinyPaintStyle.stroke;
+      p.style = PaintStyle.stroke;
       p.strokeWidth = 5.5;
       canvas.drawRect(null, new Rect(150.0, 150.0, 100.0, 100.0), p);
 
-      p.style = TinyPaintStyle.fill;
+      p.style = PaintStyle.fill;
       p.color = new Color.argb(0xff, 0xff, 0xaa, 0xff);
       canvas.drawOval(null, new Rect(150.0, 150.0, 100.0, 100.0), p);
 
-      p.style = TinyPaintStyle.stroke;
+      p.style = PaintStyle.stroke;
       p.strokeWidth = 10.0;
       p.color = new Color.argb(0xff, 0xff, 0xff, 0xaa);
       canvas.drawOval(null, new Rect(150.0, 150.0, 100.0, 100.0), p);

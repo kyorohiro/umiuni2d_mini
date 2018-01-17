@@ -57,9 +57,9 @@ class CharaGameRoot extends umiuni2d.DisplayObject {
       new umiuni2d.Rect(0.0, 0.0, 200.0, 200.0),
       new umiuni2d.Rect(0.0, 0.0, 200.0, 200.0)
     ], transforms: [
-      umiuni2d.TinyCanvasTransform.NONE,
-      umiuni2d.TinyCanvasTransform.NONE,
-      umiuni2d.TinyCanvasTransform.NONE
+      umiuni2d.CanvasTransform.NONE,
+      umiuni2d.CanvasTransform.NONE,
+      umiuni2d.CanvasTransform.NONE
     ]);
   }
 }

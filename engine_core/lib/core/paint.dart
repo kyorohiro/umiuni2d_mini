@@ -1,10 +1,10 @@
 part of core;
 
-enum TinyPaintStyle { fill, stroke }
+enum PaintStyle { fill, stroke }
 
 class Paint {
   Color color;
-  TinyPaintStyle style = TinyPaintStyle.fill;
+  PaintStyle style = PaintStyle.fill;
   double strokeWidth = 1.0;
   Paint({this.color}) {
     if (this.color == null) {

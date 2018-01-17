@@ -62,10 +62,10 @@ class Sprite extends DisplayObjectEx {
 
   List<Rect> _src = [];
   List<Rect> _dst = [];
-  List<TinyCanvasTransform> _trans = [];
+  List<CanvasTransform> _trans = [];
   Paint _paint;
 
-  Sprite.simple(this.image, {this.centerX, this.centerY, List<Rect> srcs, List<Rect> dsts, List<TinyCanvasTransform> transforms}) {
+  Sprite.simple(this.image, {this.centerX, this.centerY, List<Rect> srcs, List<Rect> dsts, List<CanvasTransform> transforms}) {
     if (centerX == null) {
       centerX = image.w / 2;
     }
@@ -79,7 +79,7 @@ class Sprite extends DisplayObjectEx {
     } else {
       _src.add(new Rect(0.0, 0.0, image.w.toDouble(), image.h.toDouble()));
       _dst.add(new Rect(0.0, 0.0, image.w.toDouble(), image.h.toDouble()));
-      _trans.add(TinyCanvasTransform.NONE);
+      _trans.add(CanvasTransform.NONE);
     }
     _paint = new Paint();
   }

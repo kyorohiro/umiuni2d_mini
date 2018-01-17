@@ -34,7 +34,7 @@ class TinyFlutterNCanvas extends core.Canvas {
     if (_curImage != null) {
       flush();
     }
-    if (paint.style == core.TinyPaintStyle.fill) {
+    if (paint.style == core.PaintStyle.fill) {
       drawFillOval(stage, rect, paint);
     } else {
       drawStrokeOval(stage, rect, paint);
@@ -188,7 +188,7 @@ class TinyFlutterNCanvas extends core.Canvas {
     if (_curImage != null) {
       flush();
     }
-    if (paint.style == core.TinyPaintStyle.fill) {
+    if (paint.style == core.PaintStyle.fill) {
       drawFillRect(stage, rect, paint);
     } else {
       drawStrokeRect(stage, rect, paint);
@@ -200,10 +200,10 @@ class TinyFlutterNCanvas extends core.Canvas {
     pp.color = new Color(p.color.value);
     pp.strokeWidth = p.strokeWidth;
     switch (p.style) {
-      case core.TinyPaintStyle.fill:
+      case core.PaintStyle.fill:
         pp.style = sky.PaintingStyle.fill;
         break;
-      case core.TinyPaintStyle.stroke:
+      case core.PaintStyle.stroke:
         pp.style = sky.PaintingStyle.stroke;
         break;
     }
@@ -327,7 +327,7 @@ class TinyFlutterNCanvas extends core.Canvas {
   }
 
 
-  void drawImageRect(core.Stage stage, core.Image image, core.Rect src, core.Rect dst, core.Paint paint, {core.TinyCanvasTransform transform: core.TinyCanvasTransform.NONE, List<Object> cache: null}) {
+  void drawImageRect(core.Stage stage, core.Image image, core.Rect src, core.Rect dst, core.Paint paint, {core.CanvasTransform transform: core.CanvasTransform.NONE, List<Object> cache: null}) {
     if (_curImage == null && _indicies.length > 0) {
       flush();
     } else if (_curImage != null && _curImage != image) {
@@ -371,28 +371,28 @@ class TinyFlutterNCanvas extends core.Canvas {
       double xe = src.x + src.w;
       double ye = src.y + src.h;
       switch (transform) {
-        case core.TinyCanvasTransform.NONE:
+        case core.CanvasTransform.NONE:
           primitveTexInf = [new Offset(xs, ys), new Offset(xs, ye), new Offset(xe, ys), new Offset(xe, ye)];
           break;
-        case core.TinyCanvasTransform.ROT90:
+        case core.CanvasTransform.ROT90:
           primitveTexInf = [new Offset(xs, ye), new Offset(xe, ye), new Offset(xs, ys), new Offset(xe, ys)];
           break;
-        case core.TinyCanvasTransform.ROT180:
+        case core.CanvasTransform.ROT180:
           primitveTexInf = [new Offset(xe, ye), new Offset(xe, ys), new Offset(xs, ye), new Offset(xs, ys)];
           break;
-        case core.TinyCanvasTransform.ROT270:
+        case core.CanvasTransform.ROT270:
           primitveTexInf = [new Offset(xe, ys), new Offset(xs, ys), new Offset(xe, ye), new Offset(xs, ye)];
           break;
-        case core.TinyCanvasTransform.MIRROR:
+        case core.CanvasTransform.MIRROR:
           primitveTexInf = [new Offset(xe, ys), new Offset(xe, ye), new Offset(xs, ys), new Offset(xs, ye)];
           break;
-        case core.TinyCanvasTransform.MIRROR_ROT90:
+        case core.CanvasTransform.MIRROR_ROT90:
           primitveTexInf = [new Offset(xs, ys), new Offset(xe, ys), new Offset(xs, ye), new Offset(xe, ye)];
           break;
-        case core.TinyCanvasTransform.MIRROR_ROT180:
+        case core.CanvasTransform.MIRROR_ROT180:
           primitveTexInf = [new Offset(xs, ye), new Offset(xs, ys), new Offset(xe, ye), new Offset(xe, ys)];
           break;
-        case core.TinyCanvasTransform.MIRROR_ROT270:
+        case core.CanvasTransform.MIRROR_ROT270:
           primitveTexInf = [new Offset(xe, ye), new Offset(xs, ye), new Offset(xe, ys), new Offset(xs, ys)];
           break;
         default:

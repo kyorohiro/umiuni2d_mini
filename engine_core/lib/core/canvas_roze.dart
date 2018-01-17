@@ -24,7 +24,7 @@ abstract class CanvasRoze extends Canvas {
   }
 
   int maxVertexTextureImageUnits = 3;
-  TinyWebglCanvas({int numOfCircleElm:16}) {
+  CanvasRoze({int numOfCircleElm:16}) {
     this.numOfCircleElm = numOfCircleElm;
     init();
     clear();
@@ -64,7 +64,7 @@ abstract class CanvasRoze extends Canvas {
   }
 
   void drawOval(Stage stage, Rect rect, Paint paint, {List<Object> cache: null}) {
-    if (paint.style == TinyPaintStyle.fill) {
+    if (paint.style == PaintStyle.fill) {
       drawFillOval(stage, rect, paint);
     } else {
       drawStrokeOval(stage, rect, paint);
@@ -170,7 +170,7 @@ abstract class CanvasRoze extends Canvas {
   }
 
   void drawRect(Stage stage, Rect rect, Paint paint, {List<Object> cache: null}) {
-    if (paint.style == TinyPaintStyle.fill) {
+    if (paint.style == PaintStyle.fill) {
       drawFillRect(stage, rect, paint);
     } else {
       drawStrokeRect(stage, rect, paint);
@@ -276,7 +276,7 @@ abstract class CanvasRoze extends Canvas {
 
   //bool a = false;
   void drawImageRect(Stage stage, Image image, Rect src, Rect dst, Paint paint,
-      {TinyCanvasTransform transform: TinyCanvasTransform.NONE, List<Object> cache: null}) {
+      {CanvasTransform transform: CanvasTransform.NONE, List<Object> cache: null}) {
 
     if (flImg != null && flImg != image) {
       //TinyImage tmp = flImg;
@@ -292,28 +292,28 @@ abstract class CanvasRoze extends Canvas {
     double ye = (src.y + src.h) / flImg.h;
     //print("############### ${xs} ${ys} ${xe} ${ye} ##############");
     switch (transform) {
-      case TinyCanvasTransform.NONE:
+      case CanvasTransform.NONE:
         flTex.addAll([xs, ys, xs, ye, xe, ys, xe, ye]);
         break;
-      case TinyCanvasTransform.ROT90:
+      case CanvasTransform.ROT90:
         flTex.addAll([xs, ye, xe, ye, xs, ys, xe, ys]);
         break;
-      case TinyCanvasTransform.ROT180:
+      case CanvasTransform.ROT180:
         flTex.addAll([xe, ye, xe, ys, xs, ye, xs, ys]);
         break;
-      case TinyCanvasTransform.ROT270:
+      case CanvasTransform.ROT270:
         flTex.addAll([xe, ys, xs, ys, xe, ye, xs, ye]);
         break;
-      case TinyCanvasTransform.MIRROR:
+      case CanvasTransform.MIRROR:
         flTex.addAll([xe, ys, xe, ye, xs, ys, xs, ye]);
         break;
-      case TinyCanvasTransform.MIRROR_ROT90:
+      case CanvasTransform.MIRROR_ROT90:
         flTex.addAll([xs, ys, xe, ys, xs, ye, xe, ye]);
         break;
-      case TinyCanvasTransform.MIRROR_ROT180:
+      case CanvasTransform.MIRROR_ROT180:
         flTex.addAll([xs, ye, xs, ys, xe, ye, xe, ys]);
         break;
-      case TinyCanvasTransform.MIRROR_ROT270:
+      case CanvasTransform.MIRROR_ROT270:
         flTex.addAll([xe, ye, xs, ye, xe, ys, xs, ys]);
         break;
       default:
