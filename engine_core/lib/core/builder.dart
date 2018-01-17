@@ -18,9 +18,6 @@ abstract class GameBuilderWithCaches {
   GameBuilderWithCaches(GameBuilder base) {
     this._base = base;
   }
-  Map<String, Image> cach = {};
-  Map<String, String> cachString = {};
-  Map<String, Uint8List> cachBytes = {};
   //
   Future<Image> loadImage(String path) async {
     if (cach.containsKey(path)) {
