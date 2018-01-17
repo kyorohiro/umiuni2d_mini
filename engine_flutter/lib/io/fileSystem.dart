@@ -6,6 +6,9 @@ class FlutterFileSystem extends io.FileSystem {
   FlutterFileSystem();
 
   Future<bool> checkPermission() async {
+    //
+    // this method is for html5 filesystem api.
+    // flutter return true.
     return true;
   }
 
