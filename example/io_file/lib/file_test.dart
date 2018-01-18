@@ -23,6 +23,7 @@ class PrimitiveTest extends DisplayObject {
       print("#END A");
       await fs.mkdir("test");
       File f = await fs.open("test/test.txt");
+      print("#END A-");
       await f.writeAsBytes(conv.UTF8.encode("Hello!!"), 0);
       await f.close();
       for(String f in await fs.ls(homeDir+"test/").toList()) {

@@ -15,7 +15,7 @@ class FlutterFileSystem extends io.FileSystem {
   Future<io.FileSystem> mkdir(String path) async {
     path = await toAbsoltePath(path);
     dio.Directory d = new dio.Directory(path);
-    if(await d.exists()) {
+    if(false == await d.exists()) {
       d.create(recursive: false);
     }
     return this;
@@ -66,7 +66,10 @@ class FlutterFileSystem extends io.FileSystem {
   Future<io.File> open(String path) async {
     path = await toAbsoltePath(path);
     dio.File f = new dio.File(path);
-    return new TinyFlutterFile(await f.open());
+    if(false == await f.exists()) {
+      await f.create();
+    }
+    return new TinyFlutterFile(await f.open(mode: dio.FileMode.APPEND));
   }
 
   Future<String> getHomeDirectory() async {
