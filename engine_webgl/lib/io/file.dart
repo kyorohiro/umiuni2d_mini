@@ -1,30 +1,9 @@
 part of io_webgl;
 
 class TinyWebglFile extends io.File {
-  String _filename;
-  String get filename => _filename;
   FileEntry _fileEntry = null;
-  TinyWebglFile(this._filename) {}
+  TinyWebglFile(this._fileEntry) {
 
-  Future<Entry> init() async {
-    await requestQuota();
-    if (_fileEntry != null) {
-      return _fileEntry;
-    }
-    FileSystem f = await window.requestFileSystem(1024, persistent: true);
-    Entry e = await f.root.createFile(filename);
-    _fileEntry = (e as FileEntry);
-    return _fileEntry;
-  }
-
-  Future<int> requestQuota() {
-    Completer<int> ret = new Completer();
-    window.navigator.persistentStorage.requestQuota(5 * 1024 * 1024, (a) {
-      ret.complete(a);
-    }, (b) {
-      ret.completeError(b);
-    });
-    return ret.future;
   }
 
   Future<int> writeAsBytes(List<int> buffer, int offset) async {
@@ -33,7 +12,6 @@ class TinyWebglFile extends io.File {
     }
 
     Completer<int> completer = new Completer();
-    await init();
     FileWriter writer = await _fileEntry.createWriter();
     writer.onWrite.listen((ProgressEvent e) {
       completer.complete(buffer.length);
@@ -59,7 +37,6 @@ class TinyWebglFile extends io.File {
 
   Future<List<int>> readAsBytes(int offset, int length) async {
     Completer<List<int>> c_ompleter = new Completer();
-    await init();
     FileReader reader = new FileReader();
     File f = await _fileEntry.file();
     reader.onLoad.listen((_) {
@@ -74,13 +51,11 @@ class TinyWebglFile extends io.File {
   }
 
   Future<int> getLength() async {
-    await init();
     File f = await _fileEntry.file();
     return f.size;
   }
 
   Future<int> truncate(int fileSize) async {
-    await init();
     FileWriter writer = await _fileEntry.createWriter();
     writer.truncate(fileSize);
     return fileSize;

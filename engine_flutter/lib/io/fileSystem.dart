@@ -16,7 +16,7 @@ class FlutterFileSystem extends io.FileSystem {
     path = await toAbsoltePath(path);
     dio.Directory d = new dio.Directory(path);
     if(await d.exists()) {
-      d.create(recursive: true);
+      d.create(recursive: false);
     }
     return this;
   }
