@@ -19,7 +19,7 @@ class IOBuilderForFlutter extends io.IOBuilder {
   Future<io.File> loadFile(String name) async  {
     await initFile();
     dio.File f = new dio.File("${rootPath.path}/${name}");
-    return new TinyFlutterFile(f);
+    return new TinyFlutterFile(await f.open());
   }
 
   @override

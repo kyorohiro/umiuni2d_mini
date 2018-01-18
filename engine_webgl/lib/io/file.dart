@@ -6,6 +6,10 @@ class TinyWebglFile extends io.File {
 
   }
 
+  Future<io.File> close() async {
+    return this;
+  }
+
   Future<int> writeAsBytes(List<int> buffer, int offset) async {
     if (!(buffer is Uint8List)) {
       buffer = new Uint8List.fromList(buffer);

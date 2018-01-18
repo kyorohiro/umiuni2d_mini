@@ -16,17 +16,26 @@ class PrimitiveTest extends DisplayObject {
 
       String homeDir = await fs.getHomeDirectory();
       print("#HOME DIR ${homeDir}");
+
       for(String f in await fs.ls(homeDir).toList()) {
         print("#LS ${(homeDir)}: ${f}");
       }
+      print("#END A");
       await fs.mkdir("test");
       File f = await fs.open("test/test.txt");
       await f.writeAsBytes(conv.UTF8.encode("Hello!!"), 0);
+      await f.close();
       for(String f in await fs.ls(homeDir+"test/").toList()) {
         print("#LS ${(homeDir+"test/")}: ${f}");
       }
+      print("#END B");
+      f = await fs.open("test/test.txt");
+      List<int> v = await f.readAsBytes(0, await f.getLength());
+      f.close();
+      print("#READ ${conv.UTF8.decode(v)}");
       //
       fs.rm("test",recursive: true);
+      stage.stop();
     });
   }
 

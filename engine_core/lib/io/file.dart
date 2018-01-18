@@ -6,6 +6,7 @@ abstract class File {
   Future<List<int>> readAsBytes(int offset, int length);
   Future<int> getLength();
   Future<int> truncate(int fileSize);
+  Future<File> close();
 }
 
 abstract class FileSystem {

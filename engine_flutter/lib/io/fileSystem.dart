@@ -66,7 +66,7 @@ class FlutterFileSystem extends io.FileSystem {
   Future<io.File> open(String path) async {
     path = await toAbsoltePath(path);
     dio.File f = new dio.File(path);
-    return new TinyFlutterFile(f);
+    return new TinyFlutterFile(await f.open());
   }
 
   Future<String> getHomeDirectory() async {

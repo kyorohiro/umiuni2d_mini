@@ -30,7 +30,7 @@ class WebglFileSystem extends io.FileSystem {
     path = await toAbsoltePath(path);
     FileSystem fs = await init();
     try {
-      html.Entry f  = await fs.root.getFile(path);
+      html.FileEntry f  = await fs.root.getFile(path);
       f.remove();
     } catch(e) {
       Entry e = await fs.root.getDirectory(path);
