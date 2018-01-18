@@ -2,12 +2,17 @@ name: example
 description: A new Flutter project.
 
 dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^0.1.0
   umiuni2d:
     path: ../../engine_core
+  umiuni2d_flutter:
+    path: ../../engine_flutter
   umiuni2d_webgl:
     path: ../../engine_webgl
-
-dev_dependencies:
-  browser: '>=0.10.0 <0.11.0'
-  dart_to_js_script_rewriter: '^1.0.1'
+flutter:
+  uses-material-design: true
+  assets:
+    - web/assets/test.jpg
 
