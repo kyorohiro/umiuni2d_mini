@@ -9,7 +9,6 @@ environment:
 
 dependencies:
   vector_math: any
-#  path: ^1.4.1
 
 dev_dependencies:
   test: ^0.12.0
