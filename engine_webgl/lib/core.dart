@@ -12,7 +12,8 @@ import 'dart:convert' as conv;
 //
 import 'package:umiuni2d/io.dart' as io;
 import 'io.dart' as io;
-
+import 'package:umiuni2d/media.dart' as media;
+import 'media.dart' as media;
 //
 part 'core/stage.dart';
 part 'core/util.dart';

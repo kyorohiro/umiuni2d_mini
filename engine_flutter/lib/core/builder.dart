@@ -2,9 +2,10 @@ part of tinygame_flutter;
 
 class TinyGameBuilderForFlutter extends core.GameBuilder {
   String assetsRoot;
+  media.FlutterMediaManager mediaManager;
 
   TinyGameBuilderForFlutter({this.assetsRoot: "web/"}) {
-    ;
+    mediaManager = new media.FlutterMediaManager(this.assetsRoot);
   }
 
   String get assetsPath => (assetsRoot.endsWith("/") ? assetsRoot : "${assetsRoot}/");
@@ -49,5 +50,9 @@ class TinyGameBuilderForFlutter extends core.GameBuilder {
 
   Future<io.FileSystem> getFileSystem() async {
     return new io.FlutterFileSystem();
+  }
+
+  Future<media.MediaManager> getMediaManager() async {
+    return mediaManager;
   }
 }
