@@ -13,6 +13,13 @@ class FlutterMediaManager extends media.MediaManager{
   }
   Future<media.AudioSource> loadAudio(String path) async {
     _audioManager = new audio.Umiuni2dAudio();
+    await _audioManager.setupFromAssets(assetRoot + path);
+    String assetPath = await _audioManager.getAssetPath("assets/bgm_maoudamashii_acoustic09.mp3");
+    if(await (new dio.File(assetPath)).exists()) {
+      print("# exist" + '\r\n');
+    } else {
+      print("# no exist" + '\r\n');
+    }
     await _audioManager.load(assetRoot + path);
     return new FlutterAudioSource(_audioManager);
   }
@@ -23,15 +30,17 @@ class FlutterAudioSource extends media.AudioSource {
   FlutterAudioSource(this._audioManager);
 
   Future prepare() async {
-//    await _audioManager.prepareAssetPath(key).prepare();
+    //    await _audioManager.prepareAssetPath(key).prepare();
   }
 
   Future start({double volume:1.0, bool looping:false}) async {
-    await this.start(volume: volume);
+    await _audioManager.setVolume(1.0, 0);
+    String v= await _audioManager.play();
+    print("# play " +v );
   }
 
   Future pause() async  {
-    await this.pause();
+    await _audioManager.pause();
     return null;
   }
 
