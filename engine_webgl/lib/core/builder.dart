@@ -10,10 +10,8 @@ class TinyGameBuilderForWebgl extends core.GameBuilder {
   String selectors = null;
   double fontPower = 2.0;
 
-  media.WebglMediaManager _mediaManager = null;
 
   TinyGameBuilderForWebgl({this.assetsRoot:""}) {
-    _mediaManager = new media.WebglMediaManager(assetsRoot);
   }
 
   core.Stage createStage({core.DisplayObject root}) {
@@ -62,8 +60,5 @@ class TinyGameBuilderForWebgl extends core.GameBuilder {
     return new io.WebglFileSystem();
   }
 
-  Future<media.MediaManager> getMediaManager() async {
-    return _mediaManager;
-  }
 
 }

@@ -9,7 +9,6 @@ abstract class GameBuilder {
   //
   Future<String> getLocale();
   Future<io.FileSystem> getFileSystem();
-  Future<media.MediaManager> getMediaManager();
 }
 
 abstract class GameBuilderWithCaches {
