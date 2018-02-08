@@ -1,6 +1,6 @@
 part of core;
 
-class Sprite extends DisplayObjectEx {
+class Sprite extends DisplayObject {
   Image image;
   double centerX;
   double centerY;
