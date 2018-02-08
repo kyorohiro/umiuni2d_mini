@@ -11,8 +11,6 @@ import 'dart:io';
 import 'dart:typed_data' as data;
 import 'package:vector_math/vector_math_64.dart';
 import 'package:umiuni2d/core.dart' as core;
-import 'package:umiuni2d/io.dart' as io;
-import 'io.dart' as io;
 
 //
 //

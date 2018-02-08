@@ -5,7 +5,6 @@ import 'util.dart';
 import 'dart:typed_data';
 import 'dart:math' as math;
 //
-import 'io.dart' as io;
 part 'core/canvas.dart';
 part 'core/canvas_roze.dart';
 part 'core/color.dart';

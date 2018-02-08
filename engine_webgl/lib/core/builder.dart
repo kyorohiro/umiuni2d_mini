@@ -10,7 +10,6 @@ class TinyGameBuilderForWebgl extends core.GameBuilder {
   String selectors = null;
   double fontPower = 2.0;
 
-
   TinyGameBuilderForWebgl({this.assetsRoot:""}) {
   }
 
@@ -55,10 +54,5 @@ class TinyGameBuilderForWebgl extends core.GameBuilder {
   Future<double> getDisplayDensity() async {
     return window.devicePixelRatio;
   }
-
-  Future<io.FileSystem> getFileSystem() async {
-    return new io.WebglFileSystem();
-  }
-
 
 }
