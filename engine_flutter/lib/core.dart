@@ -20,32 +20,23 @@ part 'core/builder.dart';
 part 'core/loader.dart';
 //
 //
-
-class GameWidget extends SingleChildRenderObjectWidget {
+class GameWidget extends SingleChildRenderObjectWidget implements core.GameWidget {
   core.Stage _stage;
   core.Stage get stage => _stage;
-  TinyGameBuilderForFlutter _builder = null;
-  TinyGameBuilderForFlutter get builder => _builder;
 
   GameWidget({
-    TinyGameBuilderForFlutter builder:null,
-    core.DisplayObject root:null,
+    core.DisplayObject root,
     double width:400.0,
     double height:300.0,
-    String assetsRoot:"web/"}) {
-    if(builder == null) {
-      builder = new TinyGameBuilderForFlutter(assetsRoot: assetsRoot);
-    }
+    this.assetsRoot: "web/"}) {
     if(root == null) {
       root = new core.GameRoot(width, height);
     }
-    this._builder = builder;
-    this._stage = builder.createStage(root: root);
+    this._stage = this.createStage(root: root);
   }
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    builder.useTestCanvas = true;
     return (stage as TinyFlutterStage);
   }
 
@@ -55,5 +46,49 @@ class GameWidget extends SingleChildRenderObjectWidget {
 
   void stop() {
     stage.stop();
+  }
+
+
+  //
+  //
+  String assetsRoot;
+  String get assetsPath => (assetsRoot.endsWith("/") ? assetsRoot : ""+assetsRoot+"/");
+
+  bool tickInPerFrame = true;
+  bool useTestCanvas = true; //false;
+  bool useDrawVertexForPrimtive = true;
+
+  @override
+  core.Stage createStage({core.DisplayObject root}) {
+    if(root == null) {
+      root = new core.DisplayObject();
+    }
+    return new TinyFlutterStage(this, root, tickInPerFrame: tickInPerFrame, useTestCanvas: useTestCanvas, useDrawVertexForPrimtive: useDrawVertexForPrimtive);
+  }
+
+  @override
+  Future<core.Image> loadImage(String path) async {
+    return new TinyFlutterImage(await ResourceLoader.loadImage(""+assetsRoot+"/"));
+  }
+
+  @override
+  Future<data.Uint8List> loadBytes(String path) async {
+    return await ResourceLoader.loadBytes(""+assetsRoot+"/");
+  }
+
+  @override
+  Future<String> loadString(String path) async {
+    String a = await ResourceLoader.loadString(""+assetsRoot+"/");
+    return a;
+  }
+
+  @override
+  Future<String> getLocale() async {
+    return sky.window.locale.languageCode;
+  }
+
+  @override
+  Future<double> getDisplayDensity() async {
+    return sky.window.devicePixelRatio;
   }
 }

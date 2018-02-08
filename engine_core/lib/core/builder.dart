@@ -3,25 +3,8 @@ part of core;
 abstract class GameWidget {
   Stage _stage;
   Stage get stage => _stage;
-
-  GameWidget({
-    DisplayObject root:null,
-    double width:400.0,
-    double height:300.0,
-    String assetsRoot:""}) {
-    if(root == null) {
-      root = new GameRoot(width, height);
-    }
-    this._stage = createStage(root: root);
-  }
-
-  void start() {
-    stage.start();
-  }
-
-  void stop() {
-    stage.stop();
-  }
+  void start();
+  void stop();
 
   Stage createStage({DisplayObject root});
   Future<double> getDisplayDensity();
@@ -31,8 +14,8 @@ abstract class GameWidget {
   Future<String> getLocale();
   //
   //
-  Map<String, Image> _cachImage = {};
-  Map<String, Uint8List> cachBytes = {};
+  //Map<String, Image> _cachImage = {};
+  //Map<String, Uint8List> cachBytes = {};
 
 
 }
