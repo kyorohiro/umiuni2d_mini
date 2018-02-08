@@ -56,10 +56,10 @@ class TinyFlutterStage extends RenderConstrainedBox implements core.Stage {
   static const int kMaxOfTouch = 5;
   Map<int, TouchPoint> touchPoints = {};
 
-  core.GameBuilder _builder;
+  core.GameWidget _builder;
 
   @override
-  core.GameBuilder get builder => _builder;
+  core.GameWidget get builder => _builder;
   core.Canvas canvas;
   bool useTestCanvas = false; // use drawVertex
   bool tickInPerFrame;

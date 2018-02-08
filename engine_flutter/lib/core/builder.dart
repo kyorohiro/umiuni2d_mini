@@ -1,6 +1,6 @@
 part of tinygame_flutter;
 
-class TinyGameBuilderForFlutter extends core.GameBuilder {
+class TinyGameBuilderForFlutter extends core.GameWidget {
   String assetsRoot;
 
   TinyGameBuilderForFlutter({this.assetsRoot: "web/"}) {

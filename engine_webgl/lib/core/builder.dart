@@ -1,6 +1,6 @@
 part of tinygame_webgl;
 
-class TinyGameBuilderForWebgl extends core.GameBuilder {
+class TinyGameBuilderForWebgl extends core.GameWidget {
   String assetsRoot = "";
   String get assetsPath => (assetsRoot.endsWith("/")?assetsRoot:"${assetsRoot}/");
   int width = 600;

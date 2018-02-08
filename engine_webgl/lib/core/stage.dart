@@ -19,8 +19,8 @@ class TinyWebglStage extends core.Stage {
   int animeId = 0;
   int paintInterval;
   int tickInterval;
-  core.GameBuilder _builder;
-  core.GameBuilder get builder => _builder;
+  core.GameWidget _builder;
+  core.GameWidget get builder => _builder;
 
   int countKickMv = 0;
   num prevTime = 0;

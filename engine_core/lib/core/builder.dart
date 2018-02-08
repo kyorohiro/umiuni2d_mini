@@ -1,15 +1,43 @@
 part of core;
 
-abstract class GameBuilder {
+abstract class GameWidget {
+  Stage _stage;
+  Stage get stage => _stage;
+
+  GameWidget({
+    DisplayObject root:null,
+    double width:400.0,
+    double height:300.0,
+    String assetsRoot:""}) {
+    if(root == null) {
+      root = new GameRoot(width, height);
+    }
+    this._stage = createStage(root: root);
+  }
+
+  void start() {
+    stage.start();
+  }
+
+  void stop() {
+    stage.stop();
+  }
+
   Stage createStage({DisplayObject root});
   Future<double> getDisplayDensity();
   Future<String> loadString(String path);
   Future<Image> loadImage(String path);
   Future<Uint8List> loadBytes(String path);
-  //
   Future<String> getLocale();
+  //
+  //
+  Map<String, Image> _cachImage = {};
+  Map<String, Uint8List> cachBytes = {};
+
+
 }
 
+/*
 abstract class GameBuilderWithCaches {
   Map<String, Image> _cachImage = {};
   Map<String, Uint8List> cachBytes = {};
@@ -72,3 +100,4 @@ abstract class GameBuilderWithCaches {
   }
 
 }
+*/
