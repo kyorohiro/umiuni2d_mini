@@ -32,7 +32,7 @@ abstract class Stage {
   DisplayObject get root;
   void set root(DisplayObject v);
 
-  GameBuilder get builder;
+  GameWidget get builder;
   bool animeIsStart = false;
   int animeId = 0;
   bool startable = false;

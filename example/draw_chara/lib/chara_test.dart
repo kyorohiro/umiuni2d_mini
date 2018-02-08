@@ -5,7 +5,7 @@ import 'dart:math' as math;
 import 'package:umiuni2d/core.dart' as umiuni2d;
 
 class CharaGameRoot extends umiuni2d.DisplayObject {
-  umiuni2d.GameBuilder _builder;
+  umiuni2d.GameWidget _builder;
   umiuni2d.Sprite chara;
   umiuni2d.Stage _stage = null;
 
@@ -46,7 +46,7 @@ class CharaGameRoot extends umiuni2d.DisplayObject {
     return this;
   }
 
-  Future<umiuni2d.Sprite> createChara(umiuni2d.GameBuilder builder) async {
+  Future<umiuni2d.Sprite> createChara(umiuni2d.GameWidget builder) async {
     umiuni2d.Image img = await builder.loadImage("assets/chara.png");
     return new umiuni2d.Sprite.simple(img, srcs: [
       new umiuni2d.Rect(0.0, 0.0, 200.0, 200.0),
