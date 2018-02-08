@@ -40,7 +40,16 @@ class GameWidget extends SingleChildRenderObjectWidget implements core.GameWidge
     return (stage as TinyFlutterStage);
   }
 
+  bool _isRun = false;
+  void run() {
+    if(_isRun == false) {
+      runApp(this);
+      _isRun = true;
+    }
+  }
+
   void start() {
+    run();
     stage.start();
   }
 
@@ -68,7 +77,7 @@ class GameWidget extends SingleChildRenderObjectWidget implements core.GameWidge
 
   @override
   Future<core.Image> loadImage(String path) async {
-    return new TinyFlutterImage(await ResourceLoader.loadImage(""+assetsRoot+"/"));
+    return new TinyFlutterImage(await ResourceLoader.loadImage(""+assetsRoot+path));
   }
 
   @override

@@ -46,6 +46,9 @@ class GameWidget extends core.GameWidget {
     stage.stop();
   }
 
+  void run() {
+
+  }
 
   String assetsRoot = "";
   String get assetsPath => (assetsRoot.endsWith("/")?assetsRoot:"${assetsRoot}/");

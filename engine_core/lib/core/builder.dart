@@ -5,6 +5,7 @@ abstract class GameWidget {
   Stage get stage => _stage;
   void start();
   void stop();
+  void run();
 
   Stage createStage({DisplayObject root});
   Future<double> getDisplayDensity();
