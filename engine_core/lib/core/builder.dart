@@ -11,8 +11,7 @@ abstract class GameBuilder {
 }
 
 abstract class GameBuilderWithCaches {
-  Map<String, Image> cach = {};
-  Map<String, String> cachString = {};
+  Map<String, Image> _cachImage = {};
   Map<String, Uint8List> cachBytes = {};
   GameBuilder _base;
   GameBuilderWithCaches(GameBuilder base) {
@@ -20,20 +19,13 @@ abstract class GameBuilderWithCaches {
   }
   //
   Future<Image> loadImage(String path) async {
-    if (cach.containsKey(path)) {
-      return cach[path];
+    if (_cachImage.containsKey(path)) {
+      return _cachImage[path];
     }
-    cach[path] = await _base.loadImage(path);
-    return cach[path];
+    _cachImage[path] = await _base.loadImage(path);
+    return _cachImage[path];
   }
 
-  Future<String> loadString(String path) async {
-    if (cachString.containsKey(path)) {
-      return cachString[path];
-    }
-    cachString[path] = await _base.loadString(path);
-    return cachString[path];
-  }
 
   Future<Uint8List> loadBytes(String path) async {
     if (cachBytes.containsKey(path)) {
@@ -50,16 +42,10 @@ abstract class GameBuilderWithCaches {
     return null;
   }
 
-  String getString(String path) {
-    if (cachString.containsKey(path)) {
-      return cachString[path];
-    }
-    return null;
-  }
 
   Image getImage(String path) {
-    if (cach.containsKey(path)) {
-      return cach[path];
+    if (_cachImage.containsKey(path)) {
+      return _cachImage[path];
     }
     return null;
   }
@@ -68,21 +54,17 @@ abstract class GameBuilderWithCaches {
     Map<String, Image> nextImageCach = {};
     excepts = (excepts == null ? [] : excepts);
     if (callDispose == true) {
-      for (String k in cach.keys) {
+      for (String k in _cachImage.keys) {
         if (false == excepts.contains(k)) {
-          Image i = cach[k];
+          Image i = _cachImage[k];
           i.dispose();
         } else {
-          nextImageCach[k] = cach[k];
+          nextImageCach[k] = _cachImage[k];
         }
       }
     }
-    cach.clear();
-    cach = nextImageCach;
-  }
-
-  Future clearStringCash() async {
-    cachString.clear();
+    _cachImage.clear();
+    _cachImage = nextImageCach;
   }
 
   Future clearBytesCash() async {
