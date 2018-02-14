@@ -13,11 +13,6 @@ https://github.com/kyorohiro/umiuni2d_io
 
 https://github.com/kyorohiro/umiuni2d_sprite
 
-
-### How to use Flutter and WebGL
-We're checking how to use flutter api in umiuni2d at following repository.
 https://github.com/kyorohiro/umiuni2d_check
-
-
 
 
